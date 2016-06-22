@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html class="ie8"> <![endif]-->
+<!--[if IE 9]> <html class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html> <!--<![endif]-->
+<head>
+    {% load static%}
+    <meta charset="utf-8">
+    <title>SelfSpurMedia</title>
+    <meta name="description" content="Responsive modern ecommerce Html5 Template">
+    <!--[if IE]> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic%7CPT+Gudea:400,700,400italic%7CPT+Oswald:400,700,300' rel='stylesheet' id="googlefont">
+
+    <link rel="stylesheet" href="{% static 'common/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/prettyPhoto.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/revslider.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/star.css' %}">
+
+    <!-- Favicon and Apple Icons -->
+    <link rel="icon" type="image/png" href="images/icons/icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="images/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/icons/apple-icon-72x72.png">
+
+    <!--- jQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!--- Modernizr -->
+    <script src="{% static 'common/js/modernizr.custom.js' %}"></script>
+
+    <!--[if lt IE 9]>
+    <script src="{% static 'common/js/html5shiv.js' %}"></script>
+    <script src="{% static 'common/js/respond.min.js' %}"></script>
+    <![endif]-->
+
+    <style id="custom-style">
+
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <header id="header">
+        <div id="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="header-top-right">
+                            <div class="header-text-container pull-right">
+                                <p class="header-text">Welcome to Selfspurmedia !</p>
+                                <p class="header-link"><a href="{% url 'login' %}">login</a>&nbsp;or&nbsp;<a href="{% url 'register' %}">create an account</a></p>
+                            </div><!-- End .pull-right -->
+                        </div><!-- End .header-top-right -->
+                    </div><!-- End .col-md-12 -->
+                </div><!-- End .row -->
+            </div><!-- End .container -->
+        </div><!-- End #header-top -->
+
+        <div id="inner-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 col-sm-5 col-xs-12 logo-container">
+                        <h1 class="logo clearfix">
+                            <span>SelfSpurMedia</span>
+                            <a href="{% url 'home' %}" title="SelfSpurMedia"><img src="{% static 'common/images/selfspurmedia.png' %}" alt="SelfSpurmedia" width="238" height="76"></a>
+                        </h1>
+                    </div><!-- End .col-md-5 -->
+                </div><!-- End .row -->
+            </div><!-- End .container -->
+
+            <div id="main-nav-container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 clearfix">
+
+                            <nav id="main-nav">
+                                <div id="responsive-nav">
+                                    <div id="responsive-nav-button">
+                                        Menu <span id="responsive-nav-button-icon"></span>
+                                    </div><!-- responsive-nav-button -->
+                                </div>
+                                <ul class="menu clearfix">
+                                    <li>
+                                        <a class="active" href="{% url 'home' %}">HOME</a>
+                                    </li>
+                                    <li class="mega-menu-container"><a href="#">SHOP</a>
+                                        <div class="mega-menu clearfix">
+                                            <div class="col-5">
+                                                <a href="category.html" class="mega-menu-title">Clothing</a><!-- End .mega-menu-title -->
+                                                <ul class="mega-menu-list clearfix">
+                                                    <li><a href="#">Dresses</a></li>
+                                                    <li><a href="#">Jeans &amp; Trousers</a></li>
+                                                    <li><a href="#">Blouses &amp; Shirts</a></li>
+                                                    <li><a href="#">Tops &amp; T-Shirts</a></li>
+                                                    <li><a href="#">Jackets &amp; Coats</a></li>
+                                                    <li><a href="#">Skirts</a></li>
+                                                </ul>
+                                            </div><!-- End .col-5 -->
+                                            <div class="col-5">
+                                                <a href="category.html" class="mega-menu-title">Shoes</a><!-- End .mega-menu-title -->
+                                                <ul class="mega-menu-list clearfix">
+                                                    <li><a href="#">Formal Shoes</a></li>
+                                                    <li><a href="#">Casual Shoes</a></li>
+                                                    <li><a href="#">Sandals</a></li>
+                                                    <li><a href="#">Boots</a></li>
+                                                    <li><a href="#">Wide Fit</a></li>
+                                                    <li><a href="#">Slippers</a></li>
+                                                </ul>
+                                            </div><!-- End .col-5 -->
+                                            <div class="col-5">
+                                                <a href="category.html" class="mega-menu-title">Accessories</a><!-- End .mega-menu-title -->
+                                                <ul class="mega-menu-list clearfix">
+                                                    <li><a href="#">Bags &amp; Purses</a></li>
+                                                    <li><a href="#">Belts</a></li>
+                                                    <li><a href="#">Gloves</a></li>
+                                                    <li><a href="#">Jewellery</a></li>
+                                                    <li><a href="#">Sunglasses</a></li>
+                                                    <li><a href="#">Hair Accessories</a></li>
+                                                </ul>
+                                            </div><!-- End .col-5 -->
+                                            <div class="col-5">
+                                                <a href="category.html" class="mega-menu-title">Sports</a><!-- End .mega-menu-title -->
+                                                <ul class="mega-menu-list clearfix">
+                                                    <li><a href="#">Sport Tops &amp; Vests</a></li>
+                                                    <li><a href="#">Swimwear</a></li>
+                                                    <li><a href="#">Footwear</a></li>
+                                                    <li><a href="#">Sports Underwear</a></li>
+                                                    <li><a href="#">Bags</a></li>
+                                                </ul>
+                                            </div><!-- End .col-5 -->
+
+                                            <div class="col-5">
+                                                <a href="category.html" class="mega-menu-title">Maternity</a><!-- End .mega-menu-title -->
+                                                <ul class="mega-menu-list clearfix">
+                                                    <li><a href="#">Tops &amp; Skirts</a></li>
+                                                    <li><a href="#">Dresses</a></li>
+                                                    <li><a href="#">Trousers &amp; Shorts</a></li>
+                                                    <li><a href="#">Knitwear</a></li>
+                                                    <li><a href="#">Jackets &amp; Coats</a></li>
+                                                </ul>
+                                            </div><!-- End .col-5 -->
+                                        </div><!-- End .mega-menu -->
+                                    </li>
+
+                                    <li>
+                                        <a href="#">PAGES</a>
+                                        <ul>
+                                            <li><a href="#">Headers</a>
+                                                <ul>
+                                                    <li><a href="header1.html">Header Version 1</a></li>
+                                                    <li><a href="header2.html">Header Version 2</a></li>
+                                                    <li><a href="header3.html">Header Version 3</a></li>
+                                                    <li><a href="header4.html">Header Version 4</a></li>
+                                                    <li><a href="header5.html">Header Version 5</a></li>
+                                                    <li><a href="header6.html">Header Version 6</a></li>
+                                                    <li><a href="header7.html">Header Version 7</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">Footers</a>
+                                                <ul>
+                                                    <li><a href="footer1.html">Footer Version 1</a></li>
+                                                    <li><a href="footer2.html">Footer Version 2</a></li>
+                                                    <li><a href="footer3.html">Footer Version 3</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="product.html">Product</a></li>
+                                            <li><a href="cart.html">Cart</a></li>
+                                            <li><a href="category.html">Category</a>
+                                                <ul>
+                                                    <li><a href="category-list.html">Category list</a></li>
+                                                    <li><a href="category.html">Category Banner 1</a></li>
+                                                    <li><a href="category-banner-2.html">Category Banner 2</a></li>
+                                                    <li><a href="category-banner-3.html">Category Banner 3</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="blog.html">Blog</a>
+                                                <ul>
+                                                    <li><a href="blog.html">Right Sidebar</a></li>
+                                                    <li><a href="blog-sidebar-left.html">Left Sidebar</a></li>
+                                                    <li><a href="blog-sidebar-both.html">Both Sidebar</a></li>
+                                                    <li><a href="single.html">Blog Post</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="checkout.html">Checkout</a></li>
+                                            <li><a href="aboutus.html">About Us</a></li>
+                                            <li><a href="register-account.html">Register Account</a></li>
+                                            <li><a href="compare-products.html">Compare Products</a></li>
+                                            <li><a href="login.html">Login</a></li>
+                                            <li><a href="404.html">404 Page</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Portfolio</a>
+                                        <ul>
+                                            <li><a href="#">Classic</a>
+                                                <ul>
+                                                    <li><a href="portfolio-2.html">Two Columns</a></li>
+                                                    <li><a href="portfolio-3.html">Three Columns</a></li>
+                                                    <li><a href="portfolio-4.html">Four Columns</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">Masonry</a>
+                                                <ul>
+                                                    <li><a href="portfolio-masonry-2.html">Two Columns</a></li>
+                                                    <li><a href="portfolio-masonry-3.html">Three Columns</a></li>
+                                                    <li><a href="portfolio-masonry-4.html">Four Columns</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">Portfolio Posts</a>
+                                                <ul>
+                                                    <li><a href="single-portfolio.html">Image Post</a></li>
+                                                    <li><a href="single-portfolio-gallery.html">Gallery Post</a></li>
+                                                    <li><a href="single-portfolio-video.html">Video Post</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Elements</a>
+                                        <ul>
+                                            <li><a href="elements/tabs.html">Tabs</a></li>
+                                            <li><a href="elements/titles.html">Titles</a></li>
+                                            <li><a href="elements/typography.html">Typography</a></li>
+                                            <li><a href="elements/collapses.html">collapses</a></li>
+                                            <li><a href="elements/animations.html">animations</a></li>
+                                            <li><a href="elements/grids.html">Grid System</a></li>
+                                            <li><a href="elements/alerts.html">Alert Boxes</a></li>
+                                            <li><a href="elements/buttons.html">Buttons</a></li>
+                                            <li><a href="elements/medias.html">Media</a></li>
+                                            <li><a href="elements/forms.html">Forms</a></li>
+                                            <li><a href="elements/icons.html">Icons</a></li>
+                                            <li><a href="elements/lists.html">Lists</a></li>
+                                            <li><a href="elements/more.html">More</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="contact.html">Contact Us</a></li>
+                                </ul>
+                            </nav>
+                            <div id="quick-access">
+
+                                <form class="form-inline quick-search-form" role="form" action="#">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Search here">
+                                    </div><!-- End .form-inline -->
+                                    <button type="submit" id="quick-search" class="btn btn-custom"></button>
+                                </form>
+                            </div><!-- End #quick-access -->
+                        </div><!-- End .col-md-12 -->
+                    </div><!-- End .row -->
+                </div><!-- End .container -->
+
+            </div><!-- End #nav -->
+        </div><!-- End #inner-header -->
+    </header><!-- End #header -->
+
+    <section id="content">
+        <div id="breadcrumb-container">
+            <div class="container">
+                <ul class="breadcrumb">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li class="active">Product</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6 product-viewer clearfix">
+                            <div id="product-image-container">
+                                <figure><img src="{% static 'common/images/products/big-item1.jpg' %}" data-zoom-image="{% static 'common/images/products/big-item1.jpg' %}" alt="Product Big image" id="product-image">
+                                </figure>
+                            </div><!-- product-image-container -->
+                        </div><!-- End .col-md-6 -->
+
+                        <div class="lg-margin2x"></div><!-- End .space -->
+
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+
+                            <div class="tab-container left product-detail-tab clearfix">
+                                <ul class="nav-tabs">
+                                    <li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>
+                                    <li><a href="#description" data-toggle="tab">Description</a></li>
+                                    <li><a href="#review" data-toggle="tab">Review</a></li>
+                                    <li><a href="#additional" data-toggle="tab">Additional Info</a></li>
+                                </ul>
+                                <div class="tab-content clearfix">
+
+                                    <div class="tab-pane active" id="overview">
+                                        <p>Sed volutpat ac massa eget lacinia. Suspendisse non purus semper, tellus vel, tristique urna. </p>
+                                        <p>Cumque nihil facere itaque mollitia consectetur saepe cupiditate debitis fugiat temporibus soluta maxime doloremque alias enim officia aperiam at similique quae vel sapiente nulla molestiae tenetur deleniti</p>
+
+                                    </div><!-- End .tab-pane -->
+
+                                    <div class="tab-pane" id="description">
+                                        <p>The perfect mix of portability and performance in a slim 1" form factor:</p>
+                                        <ul class="product-details-list">
+                                            <li>3rd gen Intel® Core™ i7 quad core processor available;</li>
+                                        </ul>
+                                    </div><!-- End .tab-pane -->
+
+                                    <div class="tab-pane" id="review">
+
+                                        <p>Sed volutpat ac massa eget lacinia. Suspendisse non purus semper, tellus vel, tristique urna. </p>
+                                        <p>Cumque nihil facere itaque mollitia consectetur saepe cupiditate debitis fugiat temporibus soluta maxime architecto ratione accusantium.
+                                        </p>
+
+                                        <!-- <button type="button" class="btn btn-default btn-sm">Add Review</button> -->
+                                        <a href="review.html" class="btn btn-default btn-sm">Add Review</a>
+                                    </div><!-- End .tab-pane -->
+
+                                    <div class="tab-pane" id="additional">
+                                        <strong>Additional Informations</strong>
+                                        <p>Quae eum placeat reiciendis enim at dolorem eligendi?</p>
+                                        <hr>
+                                        <ul class="product-details-list">
+                                            <li>Lorem ipsum dolor sit quam</li>
+                                            <li>Consectetur adipisicing elit</li>
+                                        </ul>
+                                    </div><!-- End .tab-pane -->
+
+                                </div><!-- End .tab-content -->
+                            </div><!-- End .tab-container -->
+                            <div class="lg-margin visible-xs"></div>
+                        </div><!-- End .col-md-9 -->
+                    </div><!-- End .row -->
+                </div><!-- End .container -->
+            </div>
+        </div>
+
+        <br><br>
+
+        <div id="reviews">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col col-md-6 col-sm-6">
+                        <!--<div class="col col-md-12">-->
+                        <h1>Reviews</h1>
+                        <form action="#">
+                            <div id="star">
+                                <p>
+                                    Rating:
+                                  <span class="starRating">
+                                    <input id="rating5" type="radio" name="rating" value="5">
+                                    <label for="rating5">5</label>
+                                    <input id="rating4" type="radio" name="rating" value="4">
+                                    <label for="rating4">4</label>
+                                    <input id="rating3" type="radio" name="rating" value="3">
+                                    <label for="rating3">3</label>
+                                    <input id="rating2" type="radio" name="rating" value="2">
+                                    <label for="rating2">2</label>
+                                    <input id="rating1" type="radio" name="rating" value="1">
+                                    <label for="rating1">1</label>
+                                  </span>
+                                </p>
+                                <!--</div>-->
+                            </div>
+
+                            <fieldset>
+
+                                <div class="input-group textarea-container">
+                                    <span class="input-group-addon"><span class="input-icon input-icon-message"></span><span class="input-text">Your Review</span></span>
+                                    <textarea name="contact-message" id="review-message" class="form-control" cols="30" rows="6" placeholder="Your Review"></textarea>
+                                </div>
+                                <input type="submit" class="btn btn-sm btn-success" value="Submit"/>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div><!-- End .col-md-6 -->
+            </div>
+
+            <div class="col col-sm-12">
+                <ul>
+                    <li>
+                        <div style="height: 50px; width:50px; background-color:black;"></div>
+                        <p>reviews here......................</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section><!-- End #content -->
+
+    <footer id="footer">
+        <div id="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7 col-sm-7 col-xs-12 footer-social-links-container">
+                        <ul class="social-links clearfix">
+                            <li><a href="#" class="social-icon icon-facebook"></a></li>
+                            <li><a href="#" class="social-icon icon-twitter"></a></li>
+                            <li><a href="#" class="social-icon icon-linkedin"></a></li>
+                        </ul>
+                    </div><!-- End .col-md-7 -->
+
+                    <div class="col-md-5 col-sm-5 col-xs-12 footer-text-container">
+                        <p>Powered by <a href="#">Inflack Limited</a>. All Rights Reserved.</p>
+                    </div><!-- End .col-md-5 -->
+                </div><!-- End .row -->
+            </div><!-- End .container -->
+        </div><!-- End #footer-bottom -->
+
+    </footer><!-- End #footer -->
+</div><!-- End #wrapper -->
+<a href="#" id="scroll-top" title="Scroll to Top"><i class="fa fa-angle-up"></i></a><!-- End #scroll-top -->
+<!-- END -->
+<script src="{% static 'common/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'common/js/smoothscroll.js' %}"></script>
+<script src="{% static 'common/js/jquery.debouncedresize.js' %}"></script>
+<script src="{% static 'common/js/retina.min.js' %}"></script>
+<script src="{% static 'common/js/jquery.placeholder.js' %}"></script>
+<script src="{% static 'common/js/jquery.hoverIntent.min.js' %}"></script>
+<script src="{% static 'common/js/twitter/jquery.tweet.min.js' %}"></script>
+<script src="{% static 'common/js/jquery.flexslider-min.js' %}"></script>
+<script src="{% static 'common/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'common/js/jflickrfeed.min.js' %}"></script>
+<script src="{% static 'common/js/jquery.prettyPhoto.js' %}"></script>
+<script src="{% static 'common/js/jquery.themepunch.tools.min.js' %}"></script>
+<script src="{% static 'common/js/jquery.themepunch.revolution.min.js' %}"></script>
+<script src="{% static 'common/js/main.js' %}"></script>
+</body>
+</html>

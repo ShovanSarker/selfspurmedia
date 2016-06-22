@@ -1,0 +1,94 @@
+{% extends 'common/base.html' %}
+<!--{% load static %}-->
+{% block content %}
+
+
+<div id="content">
+    <div class="container">
+
+        <div class="col-md-12">
+
+            <ul class="breadcrumb">
+                <li><a href="{% url 'home'%}">Home</a>
+                </li>
+                <li>New account / Sign in</li>
+            </ul>
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="box">
+                <h1>New account</h1>
+                <p class="lead">Not Registered here?</p>
+                <hr>
+                <form role="form" action="/register/" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email_reg" name="email_reg" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password_reg" name="password" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="security_ques">Security Question</label>
+                        <input type="text" class="form-control" id="security_ques" name="security_ques" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="secret_answer">Answer</label>
+                        <input type="text" class="form-control" id="secret_answer" name="secret_answer" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="package">Select a Package</label>
+                        {% for all_package in all_packages %}
+                        <div class="radio">
+                            <label><input type="radio" id="package" name="package" value="{{all_package.id}}">{{all_package.name}}({{all_package.remarks}})</label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i> Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="box">
+                <h1>Login</h1>
+
+                <p class="lead">Already registered?</p>
+
+
+                <hr>
+
+                <form action="{% url 'login' %}" method="post">{% csrf_token %}
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email"  name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /#content -->
+
+
+
+{% endblock %}

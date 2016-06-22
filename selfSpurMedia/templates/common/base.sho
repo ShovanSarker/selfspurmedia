@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Home | selfspurmedia</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+
+
+    <link href="css/resource.css" rel="stylesheet">
+    <link href="css/footer.css" rel="stylesheet">
+
+</head><!--/head-->
+
+<body>
+<header class="thd">
+    <div class="container">
+        <div class="col-sm-2">
+            <a href="#" class="J-sc-hd-i-logo">
+                <img src="images/logo.png" alt="" />
+            </a>
+        </div>
+        <div class="col-sm-4">
+            <form class="form-search">
+                <div class="input-append">
+                    <input type="text" class="col-sm-9" placeholder="What are you looking for...">
+                    <button type="submit" class="btn bbg"><i class="fa fa-search"></i> Search</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-2 urlsr">
+            <div class="sc-hd-ms-icon sc-hd-i-unsignavatar"></div>
+            <ul>
+                <li><a href="#">Sign In</a></li> |
+                <li><a href="#">Register</a></li>
+            </ul>
+        </div>
+
+        <div class="col-sm-2">
+            <div class="social_media_icons clearfix">
+                <a class="social_media_icon" href="#" target="_blank" title="">
+					<span class="icon_blank icon_facebook">
+					<span class="social_text">facebook</span></span>
+                </a>
+                <a class="social_media_icon" href="#" target="_blank" title="">
+					<span class="icon_blank icon_twitter">
+					<span class="social_text">twitter</span></span>
+                </a>
+                <a class="social_media_icon" href="" target="_blank" title="">
+					<span class="icon_blank icon_youtube">
+					<span class="social_text">youtube</span>
+					</span></a>
+                <a class="social_media_icon" href="#" target="_blank" title=""><span class="icon_blank icon_linkedin">
+					<span class="social_text">linkedin</span></span>
+                </a>
+            </div>
+
+        </div>
+        <div class="col-sm-1">
+            <div class="try-button"><a href="#" class="f-arr-btn f-sp-arr-blue">Submit A Spur</a></div>
+        </div>
+    </div>
+</header>
+<div class="container">
+
+
+</div>
+<footer id="footer"><!--Footer-->
+    <div class="row">
+        <div class="ui-footer-sitemap">
+            <div class="col-sm-3">
+                <h5>Customer Services</h5>
+                <dl>
+                    <dd><a href="#" target="_blank" >Help Center</a></dd>
+                    <dd><a  href="#" target="_blank">Submit a Complaint</a></dd>
+                </dl>
+            </div>
+            <div class="col-sm-3">
+                <h5>About Selfspurmedia</h5>
+                <dl>
+                    <dd><a href="#" target="_blank">About us</a></dd>
+                    <dd><a href="#" target="_blank">Sitemap</a></dd>
+                </dl>
+            </div>
+            <div class="col-sm-3">
+                <h5>To Know Information</h5>
+                <dl>
+                    <dd><a href="#" target="_blank" >How it works</a></dd>
+                    <dd><a href="#" target="_blank" >Terms & Condition</a></dd>
+                    <dd><a href="#" target="_blank" >Privacy Policy</a></dd>
+                </dl>
+            </div>
+            <div class="col-sm-3">
+                <h5 class="hsp">Contact with us</h5>
+                <div class="social_media_icons clearfix">
+                    <a class="social_media_icon" href="#" target="_blank" title="">
+				<span class="icon_blank icon_facebook">
+				<span class="social_text">facebook</span></span>
+                    </a>
+                    <a class="social_media_icon" href="#" target="_blank" title="">
+				<span class="icon_blank icon_twitter">
+				<span class="social_text">twitter</span></span>
+                    </a>
+                    <a class="social_media_icon" href="" target="_blank" title="">
+				<span class="icon_blank icon_youtube">
+				<span class="social_text">youtube</span>
+				</span></a>
+                    <a class="social_media_icon" href="#" target="_blank" title=""><span class="icon_blank icon_linkedin">
+				<span class="social_text">linkedin</span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container">
+            <div class="cpr">
+                Copyright © 2016 · Selfspurmedia. All Rights Reserved
+            </div>
+        </div>
+    </div>
+
+</footer><!--/Footer-->
+
+
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.scrollUp.min.js"></script>
+<script src="js/price-range.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

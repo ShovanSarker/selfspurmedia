@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html class="ie8"> <![endif]-->
+<!--[if IE 9]> <html class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html> <!--<![endif]-->
+<head>
+	{% load static%}
+	<meta charset="utf-8">
+	<title>Venedor - Responsive eCommerce Template</title>
+	<meta name="description" content="Responsive modern ecommerce Html5 Template">
+	<!--[if IE]> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <![endif]-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href='//fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic%7CPT+Gudea:400,700,400italic%7CPT+Oswald:400,700,300' rel='stylesheet' id="googlefont">
+
+
+
+	<link rel="stylesheet" href="{% static 'common/css/bootstrap.min.css' %}">
+
+	<link rel="stylesheet" href="{% static 'common/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'common/css/owl.carousel.css' %}">
+	<link rel="stylesheet" href="{% static 'common/css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'common/css/responsive.css' %}">
+
+	<!-- Favicon and Apple Icons -->
+	<link rel="icon" type="image/png" href="images/icons/icon.png">
+	<link rel="apple-touch-icon" sizes="57x57" href="images/icons/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/icons/apple-icon-72x72.png">
+
+	<!--- jQuery -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+	<!--[if lt IE 9]>
+	<script src="{% static 'common/js/html5shiv.js' %}"></script>
+    <script src="{% static 'common/js/respond.min.js' %}"></script>
+	<![endif]-->
+
+	<style id="custom-style">
+
+	</style>
+</head>
+<body>
+<div id="wrapper">
+	<header id="header">
+
+		<div id="inner-header">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-5 col-sm-5 col-xs-12 logo-container">
+						<h1 class="logo clearfix">
+							<span>Responsive eCommerce Template</span>
+							<a href="{% url 'home' %}" title="SelfSpurMedia"><img src="{% static 'common/images/selfspurmedia.png' %}" alt="SelfSpurmedia" width="238" height="76"></a>
+						</h1>
+					</div><!-- End .col-md-5 -->
+				</div><!-- End .row -->
+			</div><!-- End .container -->
+
+
+		</div><!-- End #nav -->
+</div><!-- End #inner-header -->
+</header><!-- End #header -->
+
+<section id="content">
+	<div id="breadcrumb-container">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="index.html">Home</a></li>
+				<li class="active">Login</li>
+			</ul>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<header class="content-title">
+					<h1 class="title">Login or Create An Account</h1>
+					<div class="md-margin"></div><!-- space -->
+				</header>
+
+				<div class="row">
+
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<h2>New User</h2>
+
+						<a href="register-account.html" class="btn btn-custom-2">Create An Account</a>
+						<div class="lg-margin"></div><!-- space -->
+					</div><!-- End .col-md-6 -->
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<h2>Registered Customers</h2>
+						<p>If you have an account with us, please log in.</p>
+						<div class="xs-margin"></div>
+
+						<form id="login-form" method="get" action="#">
+							<div class="input-group">
+								<span class="input-group-addon"><span class="input-icon input-icon-email"></span><span class="input-text">Email&#42;</span></span>
+								<input type="text" required class="form-control input-lg" placeholder="Your Email">
+							</div><!-- End .input-group -->
+							<div class="input-group xs-margin">
+								<span class="input-group-addon"><span class="input-icon input-icon-password"></span><span class="input-text">Password&#42;</span></span>
+								<input type="password" required class="form-control input-lg" placeholder="Your Password">
+							</div><!-- End .input-group -->
+							<span class="help-block text-right"><a href="#">Forgot your password?</a></span>
+							<button class="btn btn-custom-2">LOGIN</button>
+						</form>
+						<div class="sm-margin"></div><!-- space -->
+					</div><!-- End .col-md-6 -->
+
+				</div><!-- End.row -->
+
+
+				<span class="text-center">Designed By<a href="#">Inflack Limited</a></span>
+
+			</div><!-- End .col-md-12 -->
+		</div><!-- End .row -->
+	</div><!-- End .container -->
+
+</section><!-- End #content -->
+
+</div><!-- End #wrapper -->
+<a href="#" id="scroll-top" title="Scroll to Top"><i class="fa fa-angle-up"></i></a><!-- End #scroll-top -->
+<!-- END -->
+<script src="{% static 'common/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'common/js/smoothscroll.js' %}"></script>
+<script src="{% static 'common/js/jquery.debouncedresize.js' %}"></script>
+<script src="{% static 'common/js/retina.min.js' %}"></script>
+<script src="{% static 'common/js/jquery.placeholder.js' %}"></script>
+<script src="{% static 'common/js/jquery.hoverIntent.min.js' %}"></script>
+<script src="{% static 'common/js/twitter/jquery.tweet.min.js' %}"></script>
+<script src="{% static 'common/js/jquery.flexslider-min.js' %}"></script>
+<script src="{% static 'common/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'common/js/jflickrfeed.min.js' %}"></script>
+<script src="{% static 'common/js/jquery.prettyPhoto.js' %}"></script>
+<script src="{% static 'common/js/jquery.themepunch.tools.min.js' %}"></script>
+<script src="{% static 'common/js/jquery.themepunch.revolution.min.js' %}"></script>
+<script src="{% static 'common/js/main.js' %}"></script>
+
+</body>
+</html>

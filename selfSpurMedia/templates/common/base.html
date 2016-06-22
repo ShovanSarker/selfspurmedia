@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+    <meta charset="utf-8">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Obaju e-commerce template">
+    <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
+    <meta name="keywords" content="">
+
+    <title>
+        SelfSpurMedia
+    </title>
+
+    <meta name="keywords" content="">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="{% static 'common/css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/owl.theme.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/star.css' %}">
+
+    <!-- theme stylesheet -->
+    <link rel="stylesheet" href="{% static 'common/css/style.default.css' %}">
+
+    <!-- your stylesheet with modifications -->
+    <link rel="stylesheet" href="{% static 'common/css/custom.css' %}">
+
+    <script rel="stylesheet" href="{% static 'common/js/respond.min.js' %}"></script>
+
+    <link rel="shortcut icon" href="{% static 'common/img/favicon.png' %}">
+
+
+
+</head>
+
+<body>
+<!-- *** TOPBAR ***
+_________________________________________________________ -->
+<div id="top">
+    <div class="container">
+        <div class="col-md-12 pull-right" data-animate="fadeInDown">
+            <ul class="menu">
+                <li> hey {% if registered %} {{ userName}} {% else %} Guest {% endif %}
+                </li>
+                {% if registered %}
+                <li><a href="#">Profile</a>
+                </li>
+                {% if admin%}<li><a href="{% url 'dashboard' %}">Admin Panel</a>
+                </li>{% endif %}
+                <li><a href="{% url 'logout' %}">Logout</a>
+                </li>
+                {% else %}
+                <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                </li>
+                <li><a href="{% url 'register'%}">Register</a>
+                </li>{% endif %}
+                <li><a href="{% url 'contact'%}">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="Login">Customer login</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'login' %}" method="post">{% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="email-modal" placeholder="email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="password-modal" placeholder="password" name="password">
+                        </div>
+
+                        <p class="text-center">
+                            <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                        </p>
+
+                    </form>
+
+                    <p class="text-center text-muted">Not registered yet?</p>
+                    <p class="text-center text-muted"><a href="{% url 'register'%}"><strong>Register now</strong></a></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- *** TOP BAR END *** -->
+
+<!-- *** NAVBAR ***
+_________________________________________________________ -->
+
+<div class="navbar navbar-default yamm" role="navigation" id="navbar">
+    <div class="container">
+        <div class="navbar-header">
+
+            <a class="navbar-brand home" href="{% url 'home' %}" data-animate-hover="bounce">
+                <img src="{% static 'common/img/selfspurmedia.png' %}" alt="SelfSpurMedia logo" class="hidden-xs">
+                <img src="{% static 'common/img/selfspurmedia.png' %}" alt="SelfSpurMedia logo" class="visible-xs"><span class="sr-only">SelfSpurMedia</span>
+            </a>
+            <div class="navbar-buttons">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-align-justify"></i>
+                </button>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">
+                    <span class="sr-only">Toggle search</span>
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+        <!--/.navbar-header -->
+
+        <!--/.nav-collapse -->
+
+        <div class="navbar-buttons">
+
+            <div class="navbar-collapse collapse right" id="basket-overview">
+                <a href="{% url 'spur'%}" class="btn btn-primary navbar-btn"><span class="hidden-sm">Submit A spur</span></a>
+            </div>
+            <!--/.nav-collapse -->
+
+            <div class="navbar-collapse collapse right" id="search-not-mobile">
+                <button type="button" class="btn navbar-btn btn-primary" data-toggle="collapse" data-target="#search">
+                    <span class="sr-only">Toggle search</span>
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+
+        </div>
+        <div class="collapse clearfix" id="search">
+            <form class="navbar-form" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+                             <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                </div>
+            </form>
+
+        </div>
+        <!--/.nav-collapse -->
+
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /#navbar -->
+
+<!-- *** NAVBAR END *** -->
+
+<div id="all">
+
+    {% block content %}
+
+    {% endblock %}
+
+
+    <!-- *** FOOTER ***
+_________________________________________________________ -->
+    <div id="footer" data-animate="fadeInUp">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <h4>Pages</h4>
+
+                    <ul>
+                        <li><a href="#">About us</a>
+                        </li>
+                        <li><a href="#">Terms and conditions</a>
+                        </li>
+                        <li><a href="#">FAQ</a>
+                        </li>
+                        <li><a href="#">Contact us</a>
+                        </li>
+                    </ul>
+
+                    <hr>
+
+                    <h4>User section</h4>
+
+                    <ul>
+                        <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                        </li>
+                        <li><a href="{% url 'register'%}">Register</a>
+                        </li>
+                    </ul>
+
+                    <hr class="hidden-md hidden-lg hidden-sm">
+
+                </div>
+                <!-- /.col-md-3 -->
+
+                <div class="col-md-3 col-sm-6">
+
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="{% url 'products'%}">Product</a>
+                        </li>
+                        <li><a href="{% url 'products'%}">Place</a>
+                        </li>
+                        <li><a href="{% url 'products'%}">Event</a>
+                        </li>
+                        <li><a href="{% url 'products'%}">Services</a>
+                        </li>
+                    </ul>
+
+                    <h4>Brand</h4>
+                    <ul>
+                        <li><a href="{% url 'products'%}">Sony</a>
+                        </li>
+                        <li><a href="{% url 'products'%}">Microsoft</a>
+                        </li>
+                        <li><a href="{% url 'products'%}">Sony</a>
+                        </li>
+                        <li><a href="{% url 'products'%}">Iphone</a>
+                        </li>
+                    </ul>
+
+                    <hr class="hidden-md hidden-lg">
+
+                </div>
+                <!-- /.col-md-3 -->
+
+                <div class="col-md-3 col-sm-6">
+
+                    <h4>Where to find us</h4>
+
+                    <p><strong>SelfSpurMedia</strong>
+                        <br>13/25 New Avenue
+                        <br>New Heaven
+                        <br>45Y 73J
+                        <br>Earth
+                        <br>
+                        <strong>Universe</strong>
+                    </p>
+
+                    <a href="contact.html">Go to contact page</a>
+
+                    <hr class="hidden-md hidden-lg">
+
+                </div>
+                <!-- /.col-md-3 -->
+
+
+
+                <div class="col-md-3 col-sm-6">
+
+                    <h4>Get the news</h4>
+
+                    <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control">
+                                <span class="input-group-btn">
+
+                <button class="btn btn-default" type="button">Subscribe!</button>
+            </span>
+
+                        </div>
+                        <!-- /input-group -->
+                    </form>
+
+                    <hr>
+
+                    <h4>Stay in touch</h4>
+
+                    <p class="social">
+                        <a href="#" class="facebook external" data-animate-hover="shake"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="twitter external" data-animate-hover="shake"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="instagram external" data-animate-hover="shake"><i class="fa fa-instagram"></i></a>
+                        <a href="#" class="gplus external" data-animate-hover="shake"><i class="fa fa-google-plus"></i></a>
+                        <a href="#" class="email external" data-animate-hover="shake"><i class="fa fa-envelope"></i></a>
+                    </p>
+
+
+                </div>
+                <!-- /.col-md-3 -->
+
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#footer -->
+
+    <!-- *** FOOTER END *** -->
+
+
+
+
+    <!-- *** COPYRIGHT ***
+_________________________________________________________ -->
+    <div id="copyright">
+        <div class="container">
+            <div class="col-md-6">
+                <p class="pull-left">© 2015 SelfSpurMedia</p>
+
+            </div>
+            <div class="col-md-6">
+                <p class="pull-right">Powered by <a href="">Inflack Ltd</a>
+                    <!-- Not removing these links is part of the licence conditions of the template. Thanks for understanding :) -->
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- *** COPYRIGHT END *** -->
+
+
+
+</div>
+<!-- /#all -->
+
+<!-- *** SCRIPTS TO INCLUDE ***
+_________________________________________________________ -->
+<script src="{% static 'common/js/jquery-1.11.0.min.js' %}"></script>
+<script src="{% static 'common/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'common/js/jquery.cookie.js' %}"></script>
+<script src="{% static 'common/js/waypoints.min.js' %}"></script>
+<script src="{% static 'common/js/modernizr.js' %}"></script>
+<script src="{% static 'common/js/bootstrap-hover-dropdown.js' %}"></script>
+<script src="{% static 'common/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'common/js/front.js' %}"></script>
+
+<script>
+    function initialize() {
+        var mapOptions = {
+            zoom: 15,
+            center: new google.maps.LatLng(49.1678136, 16.5671893),
+            mapTypeId: google.maps.MapTypeId.ROAD,
+            scrollwheel: false
+        }
+        var map = new google.maps.Map(document.getElementById('map'),
+                mapOptions);
+
+        var myLatLng = new google.maps.LatLng(49.1681989, 16.5650808);
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map
+        });
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+    var btnCust = '<button type="button" class="btn btn-default" title="Add picture tags" ' +
+            'onclick="alert(\'Call your custom code here.\')">' +
+            '<i class="glyphicon glyphicon-tag"></i>' +
+            '</button>';
+    $("#avatar").fileinput({
+        overwriteInitial: true,
+        maxFileSize: 1500,
+        showClose: false,
+        showCaption: false,
+        browseLabel: '',
+        removeLabel: '',
+        browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
+        removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
+        removeTitle: 'Cancel or reset changes',
+        elErrorContainer: '#kv-avatar-errors',
+        msgErrorClass: 'alert alert-block alert-danger',
+        defaultPreviewContent: '<img src="/uploads/default_avatar_male.jpg" alt="Your Avatar" style="width:160px">',
+        layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
+        allowedFileExtensions: ["jpg", "png", "gif"]
+    });
+</script>
+
+</body>
+
+</html>
