@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Home | selfspurmedia</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/responsive.css" rel="stylesheet">
+    {% block title %} {% endblock %}
 
 
-    <link href="css/resource.css" rel="stylesheet">
-    <link href="css/footer.css" rel="stylesheet">
+    <link href="{% static 'common/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'common/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'common/css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'common/css/responsive.css' %}" rel="stylesheet">
+
+
+    <link href="{% static 'common/css/resource.css' %}" rel="stylesheet">
+    <link href="{% static 'common/css/footer.css' %}" rel="stylesheet">
 
 </head><!--/head-->
 
@@ -22,25 +25,9 @@
     <div class="container">
         <div class="col-sm-2">
             <a href="#" class="J-sc-hd-i-logo">
-                <img src="images/logo.png" alt="" />
+                <img src="{% static 'common/images/logo.png' %}" alt="" />
             </a>
         </div>
-        <div class="col-sm-4">
-            <form class="form-search">
-                <div class="input-append">
-                    <input type="text" class="col-sm-9" placeholder="What are you looking for...">
-                    <button type="submit" class="btn bbg"><i class="fa fa-search"></i> Search</button>
-                </div>
-            </form>
-        </div>
-        <div class="col-sm-2 urlsr">
-            <div class="sc-hd-ms-icon sc-hd-i-unsignavatar"></div>
-            <ul>
-                <li><a href="#">Sign In</a></li> |
-                <li><a href="#">Register</a></li>
-            </ul>
-        </div>
-
         <div class="col-sm-2">
             <div class="social_media_icons clearfix">
                 <a class="social_media_icon" href="#" target="_blank" title="">
@@ -61,16 +48,91 @@
             </div>
 
         </div>
-        <div class="col-sm-1">
-            <div class="try-button"><a href="#" class="f-arr-btn f-sp-arr-blue">Submit A Spur</a></div>
+        <div class="col-sm-4">
+            <form class="form-search">
+                <div class="input-append">
+                    <input type="text" class="col-sm-9" placeholder="What are you looking for...">
+                    <button type="submit" class="btn bbg"><i class="fa fa-search"></i> Search</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-4" style="padding-left: 0px; padding-right: 0px;">
+            <div class="urlsr">
+                <ul>
+                    <li> hey {% if registered %} <a href="#">{{ userName}}</a> {% else %} Guest {% endif %} |
+                    </li>
+                    {% if registered %}
+                    {% if admin%}<li><a href="{% url 'dashboard' %}">Admin Panel</a> |</li>{% endif %}
+                    <li><a href="{% url 'logout' %}">Logout</a> |
+                    </li>
+                    {% else %}
+                    <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a> |
+                    </li>
+                    <li><a href="{% url 'register'%}">Register</a> |
+                    </li>{% endif %}
+                    <li><a href="{% url 'contact'%}">Contact</a>
+                    <li><div class="try-button" style="padding-left: 16px;padding-top: 0px;"><a href="#" class="f-arr-btn f-sp-arr-blue">Submit A Spur</a></div>
+                    </li>
+                </ul>
+            </div>
+            <!--<div class="pull-right">-->
+                <!--<div class="try-button"><a href="#" class="f-arr-btn f-sp-arr-blue">Submit A Spur</a></div>-->
+            <!--</div>-->
+        </div>
+    </div>
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="Login">Customer login</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'login' %}" method="post">{% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="email-modal" placeholder="email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="password-modal" placeholder="password" name="password">
+                        </div>
+
+                        <p class="text-center">
+                            <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                        </p>
+
+                    </form>
+
+                    <p class="text-center text-muted">Not registered yet?</p>
+                    <p class="text-center text-muted"><a href="{% url 'register'%}"><strong>Register now</strong></a></p>
+
+                </div>
+            </div>
         </div>
     </div>
 </header>
-<div class="container">
 
+{% block content %}
 
-</div>
+{% endblock %}
+
+<!--Footer-->
+
 <footer id="footer"><!--Footer-->
+    <div class="scc-trade-alert-box">
+        <div class="scc-t-a-b-tips">
+            <i class="t-icon-mail"></i>
+            <span class="J-m-t-text">Trade Alert - Delivering the latest product trends and industry news straight to your inbox.</span>
+        </div>
+        <div class="J-scc-search J-ta-section scc-t-a-search" style="display: block;">
+            <input type="text" placeholder="Your email" class="J-search-text scc-t-a-search-text ui2-textfield ui2-textfield-single ui2-textfield-large" value="">
+            <input type="button" class="J-btn-search scc-t-a-search-button ui2-button ui2-button-default ui2-button-normal ui2-button-large" value="Subscribe">
+            <div class="J-error-tips scc-t-a-search-tips">
+                Weâ€™ll never share your email address with a third-party.
+            </div>
+        </div>
+    </div>
+    <hr>
     <div class="row">
         <div class="ui-footer-sitemap">
             <div class="col-sm-3">
@@ -120,19 +182,19 @@
     <div class="row">
         <div class="container">
             <div class="cpr">
-                Copyright © 2016 · Selfspurmedia. All Rights Reserved
+                Copyright Â© 2016 Â· Selfspurmedia. All Rights Reserved
             </div>
         </div>
     </div>
 
-</footer><!--/Footer-->
+</footer>
+<!--/Footer-->
 
-
-
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.scrollUp.min.js"></script>
-<script src="js/price-range.js"></script>
-<script src="js/main.js"></script>
+<!-- scripts -->
+<script src="{% static 'common/js/jquery.js' %}"></script>
+<script src="{% static 'common/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'common/js/jquery.scrollUp.min.js' %}"></script>
+<script src="{% static 'common/js/price-range.js' %}"></script>
+<script src="{% static 'common/js/main.js' %}"></script>
 </body>
 </html>
