@@ -1,8 +1,8 @@
 {% extends 'common/base.sho' %}
 {% load static %}
-    {% block title %}
-    <title>{{ page_title }} | selfspurmedia</title>
-    {% endblock %}
+{% block title %}
+<title>{{ page_title }} | selfspurmedia</title>
+{% endblock %}
 {% block content %}
 <!--slider-->
 <section id="slider">
