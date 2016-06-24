@@ -299,7 +299,6 @@
 
 <section class="bg">
     <div class="recommended_items"><!--recommended_items-->
-
         <h2 class="title">Featured Listings</h2>
         <div id="recommended-item-carousel1" class="carousel slide" data-interval="false" data-ride="carousel">
             <div class="carousel-inner">
