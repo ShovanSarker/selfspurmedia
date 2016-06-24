@@ -114,7 +114,7 @@ def register(request):
         request.session['user'] = postdata['email_reg']
         return redirect('/')
     else:
-        return render(request, 'common/register.html', {'all_packages': all_packages})
+        return render(request, 'common/register.sho', {'all_packages': all_packages})
 
 
 def spur(request):
@@ -125,24 +125,24 @@ def contact(request):
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
 
-        return render(request, 'common/contact.html', {'admin': userObject.isAdmin,
-                                                       'productOwner': userObject.isProductOwner,
-                                                       'userName': userObject.name,
-                                                       'registered': True})
+        return render(request, 'common/contact.sho', {'admin': userObject.isAdmin,
+                                                      'productOwner': userObject.isProductOwner,
+                                                      'userName': userObject.name,
+                                                      'registered': True})
     else:
-        return render(request, 'common/contact.html', {'registered': False})
+        return render(request, 'common/contact.sho', {'registered': False})
 
 
 def profile(request):
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
 
-        return render(request, 'common/contact.html', {'admin': userObject.isAdmin,
-                                                       'productOwner': userObject.isProductOwner,
-                                                       'userName': userObject.name,
-                                                       'registered': True})
+        return render(request, 'common/contact.sho', {'admin': userObject.isAdmin,
+                                                      'productOwner': userObject.isProductOwner,
+                                                      'userName': userObject.name,
+                                                      'registered': True})
     else:
-        return render(request, 'common/contact.html', {'registered': False})
+        return render(request, 'common/contact.sho', {'registered': False})
 
 '''
 End common section
