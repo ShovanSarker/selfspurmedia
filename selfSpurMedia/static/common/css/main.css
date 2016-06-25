@@ -986,6 +986,24 @@ h2.gap{
     position: relative;
 }
 
+h2.gap1{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 5px;
+    position: relative;
+}
+
+h1.gap{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 5px;
+    position: relative;
+}
+
 .product-image-wrapper{
     border:1px solid #F7F7F5;
     overflow: hidden;
