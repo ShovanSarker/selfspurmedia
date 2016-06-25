@@ -83,6 +83,9 @@
                     <li>
                         <a href="{% url 'package'%}"><i class="fa fa-dashboard fa-fw"></i> Packages</a>
                     </li>
+                    <li>
+                        <a href="{% url 'package_request'%}"><i class="fa fa-dashboard fa-fw"></i> Package Requests</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->

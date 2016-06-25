@@ -36,7 +36,7 @@ def login(request):
             auth_login(request, user)
             request.session['user'] = postdata['email']
             if user.is_superuser:
-                res = redirect('/admin')
+                res = redirect('/')
             else:
                 res = redirect('/')
         else:
@@ -114,7 +114,7 @@ def register(request):
         request.session['user'] = postdata['email_reg']
         return redirect('/')
     else:
-        return render(request, 'common/register.html', {'all_packages': all_packages})
+        return render(request, 'common/register.sho', {'all_packages': all_packages})
 
 
 def spur(request):
@@ -125,24 +125,24 @@ def contact(request):
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
 
-        return render(request, 'common/contact.html', {'admin': userObject.isAdmin,
-                                                       'productOwner': userObject.isProductOwner,
-                                                       'userName': userObject.name,
-                                                       'registered': True})
+        return render(request, 'common/contact.sho', {'admin': userObject.isAdmin,
+                                                      'productOwner': userObject.isProductOwner,
+                                                      'userName': userObject.name,
+                                                      'registered': True})
     else:
-        return render(request, 'common/contact.html', {'registered': False})
+        return render(request, 'common/contact.sho', {'registered': False})
 
 
 def profile(request):
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
 
-        return render(request, 'common/contact.html', {'admin': userObject.isAdmin,
-                                                       'productOwner': userObject.isProductOwner,
-                                                       'userName': userObject.name,
-                                                       'registered': True})
+        return render(request, 'common/contact.sho', {'admin': userObject.isAdmin,
+                                                      'productOwner': userObject.isProductOwner,
+                                                      'userName': userObject.name,
+                                                      'registered': True})
     else:
-        return render(request, 'common/contact.html', {'registered': False})
+        return render(request, 'common/contact.sho', {'registered': False})
 
 '''
 End common section
@@ -155,7 +155,7 @@ Start admin section
 @login_required(login_url='/login/')
 def dashboard(request):
 
-    return render(request, 'admin/index.html', {})
+    return render(request, 'admin/index.sho', {})
 
 
 @login_required(login_url='/login/')
@@ -165,10 +165,10 @@ def subscriber(request):
     banned_subscribers = Subscriber.objects.filter(isProductOwner=True, isAdmin=False, isActive=False)
     pending_subscribers = Subscriber.objects.filter(isProductOwner=False, isAdmin=False, isActive=False)
 
-    return render(request, 'admin/subscribers.html', {'admin_subscribers': admin_subscribers,
-                                                      'shopowner_subscribers': shopowner_subscribers,
-                                                      'banned_subscribers': banned_subscribers,
-                                                      'pending_subscribers': pending_subscribers})
+    return render(request, 'admin/subscribers.sho', {'admin_subscribers': admin_subscribers,
+                                                     'shopowner_subscribers': shopowner_subscribers,
+                                                     'banned_subscribers': banned_subscribers,
+                                                     'pending_subscribers': pending_subscribers})
 
 
 @login_required(login_url='/login/')
@@ -216,8 +216,8 @@ def package(request):
             this_package.save()
         return redirect('/package')
     else:
-        return render(request, 'admin/package.html', {'active_packages': active_packages,
-                                                      'inactive_packages': inactive_packages})
+        return render(request, 'admin/package.sho', {'active_packages': active_packages,
+                                                     'inactive_packages': inactive_packages})
 
 
 @login_required(login_url='/login/')
@@ -241,8 +241,8 @@ def package_request(request):
         package_request_object.save()
         return redirect('/package_request')
     else:
-        return render(request, 'admin/package_request.html', {'requested_packages': requested_packages,
-                                                              'subscribed_packages': subscribed_packages})
+        return render(request, 'admin/package_request.sho', {'requested_packages': requested_packages,
+                                                             'subscribed_packages': subscribed_packages})
 '''
 End admin section
 '''
