@@ -26,12 +26,12 @@
 <header class="thd">
     <div class="container">
         <div class="col-sm-2">
-            <a href="#" class="J-sc-hd-i-logo">
-                <img src="{% static 'common/images/logo.png' %}" alt="" />
+            <a href="#" class="J-sc-hd-i-logo" >
+                <img src="{% static 'common/images/logo.png' %}" alt="" style="padding-top: 10px;"/>
             </a>
         </div>
         <div class="col-sm-2">
-            <div class="social_media_icons clearfix">
+            <div class="social_media_icons clearfix" style="padding-top: 15px;">
                 <a class="social_media_icon" href="#" target="_blank" title="">
 					<span class="icon_blank icon_facebook">
 					<span class="social_text">facebook</span></span>
@@ -51,7 +51,7 @@
 
         </div>
         <div class="col-sm-4">
-            <form class="form-search">
+            <form class="form-search" style="padding-top: 15px;">
                 <div class="input-append">
                     <input type="text" class="col-sm-9" placeholder="What are you looking for...">
                     <button type="submit" class="btn bbg"><i class="fa fa-search"></i> Search</button>

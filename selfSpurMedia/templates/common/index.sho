@@ -62,7 +62,7 @@
             <div class="left-sidebar .m-services">
                 <h2 class=""> <i class="ui2-icon ui2-icon-compass"></i> Discover much more</h2>
                 <h3 class="menu-button-title" data-role="menu-button-title">
-                    <i class="ui2-icon ui2-icon-category ui2-icon-s"> </i>Categories
+                    <i class="ui2-icon ui2-icon-category ui2-icon-s"> </i>Menu
                     <i class="ui2-icon ui2-icon-arrow-down ui2-icon-xs"></i>
                     <i class="ui2-icon ui2-icon-xs ui2-icon-cross category-close" data-role="category-close" style="display: none;"></i>
                 </h3>
@@ -72,7 +72,7 @@
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
                                     <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                    Apparel, Textiles & Accessories
+                                    Category
                                 </a>
                             </h4>
                         </div>
@@ -93,7 +93,7 @@
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordian" href="#mens">
                                     <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                    Auto & Transportation
+                                    Type
                                 </a>
                             </h4>
                         </div>
@@ -114,13 +114,12 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordian" href="#womens">
                                     <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                    Electronics
+                                    Brands
                                 </a>
                             </h4>
                         </div>
@@ -136,43 +135,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title"><a href="#">Machinery, Industrial Parts & Tools</a></h4>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title"><a href="#">Gifts, Sports & Toys</a></h4>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title"><a href="#">Home, Lights & Construction</a></h4>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title"><a href="#">Health & Beauty</a></h4>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title"><a href="#">Bags, Shoes & Accessories</a></h4>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title"><a href="#">Electrical Equipment, Components</a></h4>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title"><a href="#">Agriculture & Food</a></h4>
-                        </div>
-                    </div>
                 </div><!--/category-products-->
-                <a class="csm" href="#">Show More</a>
             </div>
 
         </div>
