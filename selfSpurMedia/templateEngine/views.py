@@ -118,6 +118,19 @@ def register(request):
 
 
 def spur(request):
+    if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
+        userObject = Subscriber.objects.get(email=request.session['user'])
+
+        return render(request, 'common/spur.html', {'admin': userObject.isAdmin,
+                                                    'productOwner': userObject.isProductOwner,
+                                                    'userName': userObject.name,
+                                                    'registered': True})
+    else:
+        return redirect('/register')
+
+
+def submit_spur(request):
+    print(request)
     return render(request, 'common/spur.html', {})
 
 
