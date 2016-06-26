@@ -137,7 +137,7 @@
                             </p>
                         </div>
 
-                        <div class="row" id="thumbs">
+                        <div class="row" id="thumbs" class="image-pop">
                             <div class="col-xs-4">
                                 <a href="{% static 'common/img/detailbig1.jpg' %}" class="thumb">
                                     <img src="{% static 'common/img/detailsquare.jpg' %}" alt="" class="img-responsive">
@@ -521,6 +521,12 @@
     </div>
     <!-- /#content -->
 
+    <script>
+        $('.image-pop').magnificPopup({
+            delegate: 'a',
+            type: 'image'
+        });
+    </script>
 
 
 {% endblock %}
