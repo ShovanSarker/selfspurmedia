@@ -20,6 +20,42 @@
     <link href="{% static 'common/css/footer.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'common/css/star.css' %}">
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+    <script>
+        $(function() {
+            var availableTags = [
+                "ActionScript",
+                "AppleScript",
+                "Asp",
+                "BASIC",
+                "C",
+                "C++",
+                "Clojure",
+                "COBOL",
+                "ColdFusion",
+                "Erlang",
+                "Fortran",
+                "Groovy",
+                "Haskell",
+                "Java",
+                "JavaScript",
+                "Lisp",
+                "Perl",
+                "PHP",
+                "Python",
+                "Ruby",
+                "Scala",
+                "Scheme"
+            ];
+            $("#tags").autocomplete({
+                source: availableTags
+            });
+        });
+    </script>
+
 </head><!--/head-->
 
 <body>
@@ -53,7 +89,7 @@
         <div class="col-sm-4">
             <form class="form-search" style="padding-top: 15px;">
                 <div class="input-append">
-                    <input type="text" class="col-sm-9" placeholder="What are you looking for...">
+                    <input id="tags" type="text" class="col-sm-9" placeholder="What are you looking for...">
                     <button type="submit" class="btn bbg"><i class="fa fa-search"></i> Search</button>
                 </div>
             </form>
@@ -193,7 +229,7 @@
 <!--/Footer-->
 
 <!-- scripts -->
-<script src="{% static 'common/js/jquery.js' %}"></script>
+{#<script src="{% static 'common/js/jquery.js' %}"></script>#}
 <script src="{% static 'common/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'common/js/jquery.scrollUp.min.js' %}"></script>
 <script src="{% static 'common/js/price-range.js' %}"></script>
