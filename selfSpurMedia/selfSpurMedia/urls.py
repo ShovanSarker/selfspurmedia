@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from templateEngine.views import home, product, products, register, contact, spur, \
-    dashboard, subscriber, logout_now, login, unblock, block, active, package, package_request
+    dashboard, subscriber, logout_now, login, unblock, block, active, package, package_request, submit_spur
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -21,6 +21,7 @@ urlpatterns = patterns('',
                        url(r'^logout/', view=logout_now, name='logout'),
                        url(r'^login/', view=login, name='login'),
                        url(r'^spur/', view=spur, name='spur'),
+                       url(r'^submit-spur/', view=submit_spur, name='submit-spur'),
                        url(r'^contact/', view=contact, name='contact'),
                        # common URLS end
 
