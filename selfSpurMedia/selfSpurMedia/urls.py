@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from templateEngine.views import home, product, products, register, contact, spur, \
     dashboard, subscriber, logout_now, login, unblock, block, active, package, \
-    package_request, submit_spur, other_request
+    package_request, submit_spur, other_request, categories
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -18,6 +18,7 @@ urlpatterns = patterns('',
                        url(r'^$', view=home, name='home'),
                        url(r'^product/', view=product, name='product'),
                        url(r'^products/', view=products, name='products'),
+                       url(r'^categories/([0-9]+)/', view=categories, name='categories'),
                        url(r'^register/', view=register, name='register'),
                        url(r'^logout/', view=logout_now, name='logout'),
                        url(r'^login/', view=login, name='login'),

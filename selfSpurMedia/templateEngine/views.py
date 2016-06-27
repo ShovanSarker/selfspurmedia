@@ -48,15 +48,23 @@ def login(request):
 
 
 def home(request):
+    brands = Brand.objects.filter(isActive=True)
+    types = Type.objects.filter(isActive=True)
+    categories = Category.objects.filter(isActive=True)
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
-
         return render(request, 'common/index.sho', {'admin': userObject.isAdmin,
                                                     'productOwner': userObject.isProductOwner,
+                                                    'brands': brands,
+                                                    'types': types,
+                                                    'categories': categories,
                                                     'userName': userObject.name,
                                                     'registered': True})
     else:
-        return render(request, 'common/index.sho', {'registered': False})
+        return render(request, 'common/index.sho', {'registered': False,
+                                                    'brands': brands,
+                                                    'types': types,
+                                                    'categories': categories})
 
 
 def product(request):
@@ -81,6 +89,26 @@ def products(request):
                                                         'registered': True})
     else:
         return render(request, 'common/category.html', {'registered': False})
+
+
+def categories(request, iid):
+    all_categories = Category.objects.all()
+    this_category = Category.objects.get(id=iid)
+    items_in_this_category = Product.objects.filter(category=this_category)
+    if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
+        userObject = Subscriber.objects.get(email=request.session['user'])
+        return render(request, 'common/category.html', {'admin': userObject.isAdmin,
+                                                        'productOwner': userObject.isProductOwner,
+                                                        'userName': userObject.name,
+                                                        'all_categories': all_categories,
+                                                        'this_category': this_category,
+                                                        'items_in_this_category': items_in_this_category,
+                                                        'registered': True})
+    else:
+        return render(request, 'common/category.html', {'registered': False,
+                                                        'this_category': this_category,
+                                                        'items_in_this_category': items_in_this_category,
+                                                        'all_categories': all_categories})
 
 
 @csrf_exempt
@@ -245,24 +273,47 @@ def package(request):
 def other_request(request):
     post_data = request.POST
     get_data = request.GET
-    if 'name' and 'limit' in post_data:
-        new_package = Package(name=post_data['name'], remarks=post_data['details'], limit=int(post_data['limit']))
-        new_package.save()
-    active_packages = Package.objects.filter(isActive=True)
-    inactive_packages = Package.objects.filter(isActive=False)
-    if 'toggle' in get_data:
+    # print(post_data)
+    # print(get_data)
+    if 'name' and 'option' in post_data:
+        if post_data['option'] == 'category':
+            new_category = Category(name=post_data['name'],
+                                    remarks=post_data['remarks'],
+                                    isPendingForApproval=False)
+            new_category.save()
+        elif post_data['option'] == 'type':
+            new_type = Type(name=post_data['name'],
+                            remarks=post_data['remarks'])
+            new_type.save()
+        elif post_data['option'] == 'brand':
+            new_brand = Brand(name=post_data['name'],
+                              remarks=post_data['remarks'],
+                              isPendingForApproval=False)
+            new_brand.save()
+
+    all_categories = Category.objects.all()
+    all_types = Type.objects.all()
+    all_brands = Brand.objects.all()
+    if 'toggle' and 'item' in get_data:
         package_id = get_data['toggle']
-        if Package.objects.filter(id=package_id).exists:
-            this_package = Package.objects.get(id=package_id)
-            if this_package.isActive:
-                this_package.isActive = False
-            else:
-                this_package.isActive = True
-            this_package.save()
-        return redirect('/package')
+        if get_data['item'] == 'category':
+            this_package = Category.objects.get(id=package_id)
+        elif get_data['item'] == 'type':
+            print('here')
+            this_package = Type.objects.get(id=package_id)
+        elif get_data['item'] == 'brand':
+            this_package = Brand.objects.get(id=package_id)
+
+        if this_package.isActive:
+            this_package.isActive = False
+        else:
+            this_package.isActive = True
+        this_package.save()
+        return redirect('/other_request')
     else:
-        return render(request, 'admin/other_requests.sho', {'active_packages': active_packages,
-                                                            'inactive_packages': inactive_packages})
+        return render(request, 'admin/other_requests.sho', {'all_categories': all_categories,
+                                                            'all_types': all_types,
+                                                            'all_brands': all_brands})
 
 
 @login_required(login_url='/login/')
