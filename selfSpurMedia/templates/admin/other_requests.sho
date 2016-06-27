@@ -102,22 +102,28 @@
         </div>
 
         <div class="row">
-            <form class="form-inline" action="{% url 'package' %}" method="post">{% csrf_token %}
-                {#  TODO  #}
-                <div class="form-group">
-                    <label for="exampleInputName2">Name</label>
-                    <input type="text" class="form-control" id="exampleInputName2" name="name" placeholder="Name of the Package" required="">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputName3">Remarks</label>
-                    <input type="text" class="form-control" id="exampleInputName3" name="details" placeholder="Details" required="">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputName4">Limit</label>
-                    <input type="number" class="form-control" id="exampleInputName4" name="limit" placeholder="Maximum Number of Posts" required="">
-                </div>
-                <button type="submit" class="btn btn-success">Add</button>
-            </form>
+            <div class="col-lg-12">
+                <form class="form-inline" action="{% url 'package' %}" method="post">{% csrf_token %}
+                    <div class="form-group">
+                        <label for="option">Option</label>
+                        <select class="form-control" name="option">
+                            <option value="null">Select</option>
+                            <option value="category">Category</option>
+                            <option value="type">Type</option>
+                            <option value="brand">Brand</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName2">Name</label>
+                        <input type="text" class="form-control" id="Name" name="name" placeholder="Name of the Package" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName3">Remarks</label>
+                        <input type="text" class="form-control" id="Remarks" name="remarks" placeholder="Details" required="">
+                    </div>
+                    <button type="submit" class="btn btn-success" style="width:100px;">Add</button>
+                </form>
+            </div>
         </div>
         <br>
         <div class="row">
