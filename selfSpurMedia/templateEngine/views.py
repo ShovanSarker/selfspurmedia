@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as auth_login
 from subscriber.models import Subscriber
+from product.models import Product, Brand, Category, Type
 from package.models import Package, PackageRequest,SubscribedPackage
 # Create your views here.
 # index page
@@ -120,17 +121,24 @@ def register(request):
 def spur(request):
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
-
+        all_type = Type.objects.filter(all)
+        all_category = Category.objects.filter(all)
+        all_brand = Brand.objects.filter(all)
         return render(request, 'common/spur.html', {'admin': userObject.isAdmin,
                                                     'productOwner': userObject.isProductOwner,
                                                     'userName': userObject.name,
+                                                    'all_type': all_type,
+                                                    'all_category': all_category,
+                                                    'all_brand': all_brand,
                                                     'registered': True})
     else:
         return redirect('/register')
 
 
 def submit_spur(request):
-    print(request)
+    print(request.POST)
+    print(request.FILES)
+
     return render(request, 'common/spur.html', {})
 
 
@@ -231,6 +239,30 @@ def package(request):
     else:
         return render(request, 'admin/package.sho', {'active_packages': active_packages,
                                                      'inactive_packages': inactive_packages})
+
+
+@login_required(login_url='/login/')
+def other_request(request):
+    post_data = request.POST
+    get_data = request.GET
+    if 'name' and 'limit' in post_data:
+        new_package = Package(name=post_data['name'], remarks=post_data['details'], limit=int(post_data['limit']))
+        new_package.save()
+    active_packages = Package.objects.filter(isActive=True)
+    inactive_packages = Package.objects.filter(isActive=False)
+    if 'toggle' in get_data:
+        package_id = get_data['toggle']
+        if Package.objects.filter(id=package_id).exists:
+            this_package = Package.objects.get(id=package_id)
+            if this_package.isActive:
+                this_package.isActive = False
+            else:
+                this_package.isActive = True
+            this_package.save()
+        return redirect('/package')
+    else:
+        return render(request, 'admin/other_requests.sho', {'active_packages': active_packages,
+                                                            'inactive_packages': inactive_packages})
 
 
 @login_required(login_url='/login/')

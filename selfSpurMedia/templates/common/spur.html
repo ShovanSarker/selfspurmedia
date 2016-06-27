@@ -16,7 +16,7 @@
 
             <div class="col-md-8 col-md-offset-2">
                 <div class="box">
-                    <form method="post" action="/submit-spur">
+                    <form method="post" action="/submit-spur/" enctype="multipart/form-data" >{% csrf_token %}
                         <h1 class="gap">Submit A Spur</h1>
                         <p class="text-muted">Please Fill up the necessary</p>
 
@@ -67,30 +67,27 @@
                                 <div class="form-group">
                                     <label class="control-label">Type</label>
                                     <select class="form-control" name="type">
-                                        <option value="option1">Option1</option>
-                                        <option value="option2">Option2</option>
-                                        <option value="option3">Option3</option>
-                                        <option value="option4">Option4</option>
+                                        {% for type in all_type %}
+                                        <option value="type.id">type.name</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="control-label">Category</label>
                                     <select class="form-control" name="category">
-                                        <option value="option1">Option1</option>
-                                        <option value="option2">Option2</option>
-                                        <option value="option3">Option3</option>
-                                        <option value="option4">Option4</option>
+                                        {% for category in all_category %}
+                                        <option value="category.id">category.name</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="control-label">Brand</label>
                                     <select class="form-control" name="brand">
-                                        <option value="option1">Option1</option>
-                                        <option value="option2">Option2</option>
-                                        <option value="option3">Option3</option>
-                                        <option value="option4">Option4</option>
+                                        {% for brand in all_brand %}
+                                        <option value="brand.id">brand.name</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
 
@@ -99,22 +96,6 @@
                                     <textarea name="contact-message" id="contact-message" name="description" class="form-control" cols="30" rows="12" placeholder="Your Message"></textarea>
                                 </div>
                                 <hr>
-
-                                <h3>Enter Your Place Detail</h3>
-
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="card" id="card" value="card">
-                                        Credit Card
-                                    </label>
-                                </div>
-
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="bank" id="bank" value="bank">
-                                        Bank Account
-                                    </label>
-                                </div>
                             </div><!-- End .row -->
                         </div>
 
