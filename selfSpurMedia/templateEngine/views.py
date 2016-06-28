@@ -6,7 +6,8 @@ from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as auth_login
 from subscriber.models import Subscriber
 from product.models import Product, Brand, Category, Type
-from package.models import Package, PackageRequest,SubscribedPackage
+from package.models import Package, PackageRequest, SubscribedPackage
+from review.models import Review
 # Create your views here.
 # index page
 # login page
@@ -67,16 +68,24 @@ def home(request):
                                                     'categories': categories})
 
 
-def product(request):
+def product(request, pid):
+    this_product = Product.objects.get(id=pid)
+    review_of_this_product = Review.objects.filter(product=this_product)
+    suggested_products = Product.objects.filter(type=this_product.type, category=this_product.category)
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
-
         return render(request, 'common/detail.html', {'admin': userObject.isAdmin,
                                                       'productOwner': userObject.isProductOwner,
+                                                      'this_product': this_product,
                                                       'userName': userObject.name,
+                                                      'suggested_products': suggested_products,
+                                                      'review_of_this_product': review_of_this_product,
                                                       'registered': True})
     else:
-        return render(request, 'common/detail.html', {'registered': False})
+        return render(request, 'common/detail.html', {'registered': False,
+                                                      'suggested_products': suggested_products,
+                                                      'review_of_this_product': review_of_this_product,
+                                                      'this_product': this_product})
 
 
 def products(request):
@@ -92,7 +101,7 @@ def products(request):
 
 
 def categories(request, iid):
-    all_categories = Category.objects.all()
+    all_categories = Category.objects.filter(isActive=True)
     this_category = Category.objects.get(id=iid)
     items_in_this_category = Product.objects.filter(category=this_category)
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
@@ -109,6 +118,46 @@ def categories(request, iid):
                                                         'this_category': this_category,
                                                         'items_in_this_category': items_in_this_category,
                                                         'all_categories': all_categories})
+
+
+def brands(request, iid):
+    all_categories = Brand.objects.filter(isActive=True)
+    this_category = Brand.objects.get(id=iid)
+    items_in_this_category = Product.objects.filter(brand=this_category)
+    if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
+        userObject = Subscriber.objects.get(email=request.session['user'])
+        return render(request, 'common/brand.html', {'admin': userObject.isAdmin,
+                                                     'productOwner': userObject.isProductOwner,
+                                                     'userName': userObject.name,
+                                                     'all_categories': all_categories,
+                                                     'this_category': this_category,
+                                                     'items_in_this_category': items_in_this_category,
+                                                     'registered': True})
+    else:
+        return render(request, 'common/brand.html', {'registered': False,
+                                                     'this_category': this_category,
+                                                     'items_in_this_category': items_in_this_category,
+                                                     'all_categories': all_categories})
+
+
+def types(request, iid):
+    all_categories = Type.objects.filter(isActive=True)
+    this_category = Type.objects.get(id=iid)
+    items_in_this_category = Product.objects.filter(type=this_category)
+    if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
+        userObject = Subscriber.objects.get(email=request.session['user'])
+        return render(request, 'common/types.html', {'admin': userObject.isAdmin,
+                                                     'productOwner': userObject.isProductOwner,
+                                                     'userName': userObject.name,
+                                                     'all_categories': all_categories,
+                                                     'this_category': this_category,
+                                                     'items_in_this_category': items_in_this_category,
+                                                     'registered': True})
+    else:
+        return render(request, 'common/types.html', {'registered': False,
+                                                     'this_category': this_category,
+                                                     'items_in_this_category': items_in_this_category,
+                                                     'all_categories': all_categories})
 
 
 @csrf_exempt
@@ -149,9 +198,9 @@ def register(request):
 def spur(request):
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
-        all_type = Type.objects.filter(all)
-        all_category = Category.objects.filter(all)
-        all_brand = Brand.objects.filter(all)
+        all_type = Type.objects.all()
+        all_category = Category.objects.all()
+        all_brand = Brand.objects.all()
         return render(request, 'common/spur.html', {'admin': userObject.isAdmin,
                                                     'productOwner': userObject.isProductOwner,
                                                     'userName': userObject.name,
@@ -163,11 +212,86 @@ def spur(request):
         return redirect('/register')
 
 
-def submit_spur(request):
-    print(request.POST)
-    print(request.FILES)
+def submitreview(request, pid):
+    if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
+        post_data = request.POST
+        this_product = Product.objects.get(id=pid)
+        userObject = Subscriber.objects.get(email=request.session['user'])
+        new_review = Review(subscriber=userObject,
+                            product=this_product,
+                            rating=post_data['rating'],
+                            review=post_data['comment'])
+        new_review.save()
+        old_review_count = this_product.totalNumberOfRating
+        old_star_rating = this_product.totalNumberOfStars
+        new_star_rating = (int(old_review_count) * int(old_star_rating) +
+                           int(post_data['rating'])) / (int(old_review_count)+1)
+        new_review_count = int(old_review_count) + 1
+        this_product.totalNumberOfRating = new_review_count
+        this_product.totalNumberOfStars = new_star_rating
+        this_product.save()
 
-    return render(request, 'common/spur.html', {})
+        return redirect('/product/'+pid)
+    else:
+        return redirect('/register')
+
+
+def submit_spur(request):
+
+    if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
+        userObject = Subscriber.objects.get(email=request.session['user'])
+        post_data = request.POST
+        file_data = request.FILES
+        print(file_data)
+        category_id = post_data['category']
+        brand_id = post_data['brand']
+        type_id = post_data['type']
+        description = post_data['contact-message']
+        product = post_data['product']
+        category_object = Category.objects.get(id=category_id)
+        brand_object = Brand.objects.get(id=brand_id)
+        type_object = Type.objects.get(id=type_id)
+        if 'avatar1' in file_data:
+            avatar1 = file_data['avatar1']
+        else:
+            avatar1 = None
+
+        if 'avatar2' in file_data:
+            avatar2 = file_data['avatar2']
+        else:
+            avatar2 = None
+
+        if 'avatar3' in file_data:
+            avatar3 = file_data['avatar3']
+        else:
+            avatar3 = None
+
+        if 'avatar4' in file_data:
+            avatar4 = file_data['avatar4']
+        else:
+            avatar4 = None
+
+        if 'avatar5' in file_data:
+            avatar5 = file_data['avatar5']
+        else:
+            avatar5 = None
+        new_product = Product(name=product,
+                              description=description,
+                              type=type_object,
+                              brand=brand_object,
+                              category=category_object,
+                              addedBy=userObject,
+                              image1=avatar1,
+                              image2=avatar2,
+                              image3=avatar3,
+                              image4=avatar4,
+                              image5=avatar5)
+        new_product.save()
+        return redirect('/')
+    else:
+        return redirect('/register')
+
+
 
 
 def contact(request):

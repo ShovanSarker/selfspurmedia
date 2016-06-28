@@ -9,7 +9,7 @@
                 <ul class="breadcrumb">
                     <li><a href="{% url 'home'%}">Home</a>
                     </li>
-                    <li>Categories</li>
+                    <li>Types</li>
                 </ul>
             </div>
 
@@ -19,14 +19,14 @@
                 <div class="panel panel-default sidebar-menu">
 
                     <div class="panel-heading">
-                        <h3 class="panel-title">Categories</h3>
+                        <h3 class="panel-title">Types</h3>
                     </div>
 
                     <div class="panel-body">
                         <ul class="nav nav-pills nav-stacked category-menu">
                             {% for category in all_categories %}
                                 <li>
-                                    <a href="/categories/{{ category.id }}">{{ category.name }}</a>
+                                    <a href="/types/{{ category.id }}">{{ category.name }}</a>
                                 </li>
                             {% endfor %}
                         </ul>
@@ -37,7 +37,7 @@
             <div class="col-md-9">
                 <div class="box">
                     <h2 class="gap">{{ this_category.name }}</h2>
-                    <p class="title">Products regarding this category are given below</p>
+                    <p class="title">Products regarding this type are given below</p>
                 </div>
 
                 <div class="row products">
@@ -78,6 +78,7 @@
                     {% endfor %}
                     <!-- /.col-md-4 -->
                 </div>
+
                 <!-- /.products -->
 
             </div>
