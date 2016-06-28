@@ -70,20 +70,24 @@ def home(request):
 
 def product(request, pid):
     this_product = Product.objects.get(id=pid)
-    review_of_this_product = Review.objects.filter(product=this_product)
-    suggested_products = Product.objects.filter(type=this_product.type, category=this_product.category)
+    review_of_this_product = Review.objects.filter(product=this_product).order_by('-dateAdded')
+    suggested_products1 = Product.objects.filter(type=this_product.type, category=this_product.category)[0:3]
+    suggested_products2 = Product.objects.filter(type=this_product.type, category=this_product.category)[4:7]
+    suggested_products3 = Product.objects.filter(type=this_product.type, category=this_product.category)[8:11]
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
         return render(request, 'common/detail.html', {'admin': userObject.isAdmin,
                                                       'productOwner': userObject.isProductOwner,
                                                       'this_product': this_product,
                                                       'userName': userObject.name,
-                                                      'suggested_products': suggested_products,
+                                                      'suggested_products1': suggested_products1,
                                                       'review_of_this_product': review_of_this_product,
                                                       'registered': True})
     else:
         return render(request, 'common/detail.html', {'registered': False,
-                                                      'suggested_products': suggested_products,
+                                                      'suggested_products1': suggested_products1,
+                                                      'suggested_products2': suggested_products2,
+                                                      'suggested_products3': suggested_products3,
                                                       'review_of_this_product': review_of_this_product,
                                                       'this_product': this_product})
 
@@ -290,8 +294,6 @@ def submit_spur(request):
         return redirect('/')
     else:
         return redirect('/register')
-
-
 
 
 def contact(request):

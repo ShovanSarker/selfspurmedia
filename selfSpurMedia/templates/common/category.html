@@ -57,19 +57,18 @@
 									</span>
                                         <h3><a target="_self" title="" href="/product/{{ item.id }}">{{ item.name }}</a></h3>
                                         <p>
-                                        <div class="detail-item" title="Rating: {{ item.totalNumberOfStars }} Star">Rating : <span class="starRating">
-                                    <input id="rating5" type="radio" name="rating" value="5" {% if item.totalNumberOfStars == 5 %} checked {% endif %}>
-                                    <label for="rating5">5</label>
-                                    <input id="rating4" type="radio" name="rating" value="4" {% if item.totalNumberOfStars == 4 %} checked {% endif %}>
-                                    <label for="rating4">4</label>
-                                    <input id="rating3" type="radio" name="rating" value="3" {% if item.totalNumberOfStars == 3 %} checked {% endif %}>
-                                    <label for="rating3">3</label>
-                                    <input id="rating2" type="radio" name="rating" value="2" {% if item.totalNumberOfStars == 2 %} checked {% endif %}>
-                                    <label for="rating2">2</label>
-                                    <input id="rating1" type="radio" name="rating" value="1" {% if item.totalNumberOfStars == 1 %} checked {% endif %}>
-                                    <label for="rating1">1</label>
-                                  </span></div>
-                                        <div class="detail-item" title="Compatible Brand: Motorola">Uploaded By: {{ item.addedBy.name }}</div>
+
+                                        <p><big><big>
+                                        <span class="starRating">
+                                            {% if item.totalNumberOfStars == 1 %} <span>☆</span> {% endif %}
+                                            {% if item.totalNumberOfStars == 2 %} <span>☆</span><span>☆</span> {% endif %}
+                                            {% if item.totalNumberOfStars == 3 %} <span>☆</span><span>☆</span><span>☆</span> {% endif %}
+                                            {% if item.totalNumberOfStars == 4 %} <span>☆</span><span>☆</span><span>☆</span><span>☆</span> {% endif %}
+                                            {% if item.totalNumberOfStars == 5 %} <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span> {% endif %}
+                                        </span>
+                                        </big></big>
+                                        </p>
+                                        <div class="detail-item" title="Uploaded By: {{ item.addedBy.name }}">Uploaded By: {{ item.addedBy.name }}</div>
                                         </p>
                                     </div>
                                 </div>

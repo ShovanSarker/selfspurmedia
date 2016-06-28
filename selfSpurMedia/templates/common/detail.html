@@ -146,18 +146,16 @@
                                 <div class="col-sm-12 col-md-12">
                                     <h5>{{ review.subscriber.name }}</h5>
                                     <p class="posted"><i class="fa fa-clock-o"></i>{{ review.dateAdded }}</p>
-                                    <p><span class="starRating">
-                                    <input type="radio" name="rating" value="5" {% if review.rating == 5 %} checked {% endif %}>
-                                    <label>5</label>
-                                    <input type="radio" name="rating" value="4" {% if review.rating == 4 %} checked {% endif %}>
-                                    <label>4</label>
-                                    <input type="radio" name="rating" value="3" {% if review.rating == 3 %} checked {% endif %}>
-                                    <label>3</label>
-                                    <input type="radio" name="rating" value="2" {% if review.rating == 2 %} checked {% endif %}>
-                                    <label>2</label>
-                                    <input type="radio" name="rating" value="1" {% if review.rating == 1 %} checked {% endif %}>
-                                    <label>1</label>
-                                  </span></p>
+                                    <p><big><big>
+                                        <span class="starRating">
+                                            {% if review.rating == 1 %} <span>☆</span> {% endif %}
+                                            {% if review.rating == 2 %} <span>☆</span><span>☆</span> {% endif %}
+                                            {% if review.rating == 3 %} <span>☆</span><span>☆</span><span>☆</span> {% endif %}
+                                            {% if review.rating == 4 %} <span>☆</span><span>☆</span><span>☆</span><span>☆</span> {% endif %}
+                                            {% if review.rating == 5 %} <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span> {% endif %}
+                                        </span>
+                                    </big></big>
+                                    </p>
                                     <p>{{ review.review }}</p>
                                 </div>
                             </div>
@@ -166,279 +164,153 @@
                 </div>
 
             </div>
+            {% if suggested_products1.count > 0 %}
+                <section class="bg">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="recommended_items"><!--recommended_items-->
+                                <h2 class="title">Suggested Products</h2>
+                                <div id="recommended-item-carousel3" class="carousel slide" data-interval="false" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="item active">
+                                            {% for item in suggested_products1 %}
+                                                <div class="col-sm-3">
+                                                    <div class="product-image-wrapper m-ws-buy">
+                                                        <div class="single-products">
+                                                            <div class="productinfo">
+                                                                <div class="item">
+                                                                    <div class="iwrap">
+                                                                        <a title="{{ item.name }}" href="/product/{{ item.id }}" class="ia">
+                                                                            <img class="ipic" alt="{{ item.name }}" src="/media/{{ item.image1 }}" >
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="info">
+                                                                        <div class="title">
+                                                                            <a title="{{ item.name }}" href="/product/{{ item.id }}">
+                                                                                {{ item.name }}
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="line">
+                                                                            <p><big><big>
+                                                                                <span class="starRating">
+                                                                                    {% if item.totalNumberOfStars == 1 %} <span>☆</span> {% endif %}
+                                                                                    {% if item.totalNumberOfStars == 2 %} <span>☆</span><span>☆</span> {% endif %}
+                                                                                    {% if item.totalNumberOfStars == 3 %} <span>☆</span><span>☆</span><span>☆</span> {% endif %}
+                                                                                    {% if item.totalNumberOfStars == 4 %} <span>☆</span><span>☆</span><span>☆</span><span>☆</span> {% endif %}
+                                                                                    {% if item.totalNumberOfStars == 5 %} <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span> {% endif %}
+                                                                                </span>
+                                                                            </big></big>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="line">Posted By: {{ item.addedBy }} </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        {% if suggested_products2.count > 0 %}
+                                            <div class="item">
 
-            <section class="bg">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="recommended_items"><!--recommended_items-->
-                            <h2 class="title">Suggested Products</h2>
-                            <div id="recommended-item-carousel3" class="carousel slide" data-interval="false" data-ride="carousel">
-                                <div class="carousel-inner">
-                                    <div class="item active">
-                                        <div class="col-sm-3">
-                                            <div class="product-image-wrapper m-ws-buy">
-                                                <div class="single-products">
-                                                    <div class="productinfo">
-                                                        <div class="item">
-                                                            <div class="iwrap">
-                                                                <a title="Upgraded U8 Smart Watch" target="_self" href="" class="ia">
-                                                                    <div class="item-market profit f-sp-flag-profit">
-                                                                        <div class="item-market-value">302%</div>
+                                                {% for item in suggested_products2 %}
+                                                    <div class="col-sm-3">
+                                                        <div class="product-image-wrapper m-ws-buy">
+                                                            <div class="single-products">
+                                                                <div class="productinfo">
+                                                                    <div class="item">
+                                                                        <div class="iwrap">
+                                                                            <a title="{{ item.name }}" href="/product/{{ item.id }}" class="ia">
+                                                                                <img class="ipic" alt="{{ item.name }}" src="/media/{{ item.image1 }}" >
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="info">
+                                                                            <div class="title">
+                                                                                <a title="{{ item.name }}" href="/product/{{ item.id }}">
+                                                                                    {{ item.name }}
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="line">
+                                                                                <p><big><big>
+                                                                                <span class="starRating">
+                                                                                    {% if item.totalNumberOfStars == 1 %} <span>☆</span> {% endif %}
+                                                                                    {% if item.totalNumberOfStars == 2 %} <span>☆</span><span>☆</span> {% endif %}
+                                                                                    {% if item.totalNumberOfStars == 3 %} <span>☆</span><span>☆</span><span>☆</span> {% endif %}
+                                                                                    {% if item.totalNumberOfStars == 4 %} <span>☆</span><span>☆</span><span>☆</span><span>☆</span> {% endif %}
+                                                                                    {% if item.totalNumberOfStars == 5 %} <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span> {% endif %}
+                                                                                </span>
+                                                                                </big></big>
+                                                                                </p>
+                                                                            </div>
+                                                                            <div class="line">Posted By: {{ item.addedBy }} </div>
+                                                                        </div>
                                                                     </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
 
-                                                                    <img class="ipic" alt="Upgraded U8 Smart Watch" src="{% static 'common/images/ltoimg1.jpg' %}" >
-                                                                </a>
-                                                            </div>
-                                                            <div class="info">
-                                                                <div class="title">
-                                                                    <a target="_self" title="Upgraded U8 Smart Watch" href="#">
-                                                                        Upgraded U8 Smart Watch
-                                                                    </a>
-                                                                </div>
-                                                                <a target="_self" href="#" class="price">
-                                                                    <div class="line">
-                                                                        <span class="discounted-price">US $7.20</span>/ Piece
+                                            </div>
+                                        {% endif %}
+                                        {% if suggested_products2.count > 0 %}
+                                            <div class="item">
+
+                                                {% for item in suggested_products3 %}
+                                                    <div class="col-sm-3">
+                                                        <div class="product-image-wrapper m-ws-buy">
+                                                            <div class="single-products">
+                                                                <div class="productinfo">
+                                                                    <div class="item">
+                                                                        <div class="iwrap">
+                                                                            <a title="{{ item.name }}" href="/product/{{ item.id }}" class="ia">
+                                                                                <img class="ipic" alt="{{ item.name }}" src="/media/{{ item.image1 }}" >
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="info">
+                                                                            <div class="title">
+                                                                                <a title="{{ item.name }}" href="/product/{{ item.id }}">
+                                                                                    {{ item.name }}
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="line">
+                                                                                <p><big><big>
+                                                                                <span class="starRating">
+                                                                                    {% if item.totalNumberOfStars == 1 %} <span>☆</span> {% endif %}
+                                                                                    {% if item.totalNumberOfStars == 2 %} <span>☆</span><span>☆</span> {% endif %}
+                                                                                    {% if item.totalNumberOfStars == 3 %} <span>☆</span><span>☆</span><span>☆</span> {% endif %}
+                                                                                    {% if item.totalNumberOfStars == 4 %} <span>☆</span><span>☆</span><span>☆</span><span>☆</span> {% endif %}
+                                                                                    {% if item.totalNumberOfStars == 5 %} <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span> {% endif %}
+                                                                                </span>
+                                                                                </big></big>
+                                                                                </p>
+                                                                            </div>
+                                                                            <div class="line">Posted By: {{ item.addedBy }} </div>
+
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="line">Rec.retail price: US $29.00</div>
-                                                                </a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                {% endfor %}
+
                                             </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="product-image-wrapper m-ws-buy">
-                                                <div class="single-products">
-                                                    <div class="productinfo">
-                                                        <div class="item">
-                                                            <div class="iwrap">
-                                                                <a title="Upgraded U8 Smart Watch" target="_self" href="" class="ia">
-                                                                    <div class="item-market profit f-sp-flag-profit">
-                                                                        <div class="item-market-value">302%</div>
-                                                                    </div>
-                                                                    <img class="ipic" alt="Upgraded U8 Smart Watch" src="{% static 'common/images/ltoimg2.jpg' %}" >
-                                                                </a>
-                                                            </div>
-                                                            <div class="info">
-                                                                <div class="title">
-                                                                    <a target="_self" title="Upgraded U8 Smart Watch" href="#">
-                                                                        Upgraded U8 Smart Watch
-                                                                    </a>
-                                                                </div>
-                                                                <a target="_self" href="#" class="price">
-                                                                    <div class="line">
-                                                                        <span class="discounted-price">US $7.20</span>/ Piece
-                                                                    </div>
-                                                                    <div class="line">Rec.retail price: US $29.00</div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="product-image-wrapper m-ws-buy">
-                                                <div class="single-products">
-                                                    <div class="productinfo">
-                                                        <div class="item">
-                                                            <div class="iwrap">
-                                                                <a title="Upgraded U8 Smart Watch" target="_self" href="" class="ia">
-                                                                    <div class="item-market profit f-sp-flag-profit">
-                                                                        <div class="item-market-value">302%</div>
-                                                                    </div>
-                                                                    <img class="ipic" alt="Upgraded U8 Smart Watch" src="{% static 'common/images/ltoimg3.jpg' %}" >
-                                                                </a>
-                                                            </div>
-                                                            <div class="info">
-                                                                <div class="title">
-                                                                    <a target="_self" title="Upgraded U8 Smart Watch" href="#">
-                                                                        Upgraded U8 Smart Watch
-                                                                    </a>
-                                                                </div>
-                                                                <a target="_self" href="#" class="price">
-                                                                    <div class="line">
-                                                                        <span class="discounted-price">US $7.20</span>/ Piece
-                                                                    </div>
-                                                                    <div class="line">Rec.retail price: US $29.00</div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="product-image-wrapper m-ws-buy">
-                                                <div class="single-products">
-                                                    <div class="productinfo">
-                                                        <div class="item">
-                                                            <div class="iwrap">
-                                                                <a title="Upgraded U8 Smart Watch" target="_self" href="" class="ia">
-                                                                    <div class="item-market profit f-sp-flag-profit">
-                                                                        <div class="item-market-value">302%</div>
-                                                                    </div>
-                                                                    <img class="ipic" alt="Upgraded U8 Smart Watch" src="{% static 'common/images/ltoimg4.jpg' %}" >
-                                                                </a>
-                                                            </div>
-                                                            <div class="info">
-                                                                <div class="title">
-                                                                    <a target="_self" title="Upgraded U8 Smart Watch" href="#">
-                                                                        Upgraded U8 Smart Watch
-                                                                    </a>
-                                                                </div>
-                                                                <a target="_self" href="#" class="price">
-                                                                    <div class="line">
-                                                                        <span class="discounted-price">US $7.20</span>/ Piece
-                                                                    </div>
-                                                                    <div class="line">Rec.retail price: US $29.00</div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {% endif %}
                                     </div>
-                                    <div class="item">
-                                        <div class="col-sm-3">
-                                            <div class="product-image-wrapper m-ws-buy">
-                                                <div class="single-products">
-                                                    <div class="productinfo">
-                                                        <div class="itemjr">
-                                                            <div class="iwrap">
-                                                                <a title="Upgraded U8 Smart Watch" target="_self" href="" class="ia">
-                                                                    <div class="item-market profit f-sp-flag-profit">
-                                                                        <div class="item-market-value">302%</div>
-                                                                    </div>
-                                                                    <img class="ipic" alt="Upgraded U8 Smart Watch" src="{% static 'common/images/ltoimg5.jpg' %}" >
-                                                                </a>
-                                                            </div>
-                                                            <div class="info">
-                                                                <div class="title">
-                                                                    <a target="_self" title="Upgraded U8 Smart Watch" href="#">
-                                                                        Upgraded U8 Smart Watch
-                                                                    </a>
-                                                                </div>
-                                                                <a target="_self" href="#" class="price">
-                                                                    <div class="line">
-                                                                        <span class="discounted-price">US $7.20</span>/ Piece
-                                                                    </div>
-                                                                    <div class="line">Rec.retail price: US $29.00</div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="product-image-wrapper m-ws-buy">
-                                                <div class="single-products">
-                                                    <div class="productinfo">
-                                                        <div class="itemjr">
-                                                            <div class="iwrap">
-                                                                <a title="Upgraded U8 Smart Watch" target="_self" href="" class="ia">
-                                                                    <div class="item-market profit f-sp-flag-profit">
-                                                                        <div class="item-market-value">302%</div>
-                                                                    </div>
-                                                                    <img class="ipic" alt="Upgraded U8 Smart Watch" src="{% static 'common/images/ltoimg6.jpg' %}" >
-                                                                </a>
-                                                            </div>
-                                                            <div class="info">
-                                                                <div class="title">
-                                                                    <a target="_self" title="Upgraded U8 Smart Watch" href="#">
-                                                                        Upgraded U8 Smart Watch
-                                                                    </a>
-                                                                </div>
-                                                                <a target="_self" href="#" class="price">
-                                                                    <div class="line">
-                                                                        <span class="discounted-price">US $7.20</span>/ Piece
-                                                                    </div>
-                                                                    <div class="line">Rec.retail price: US $29.00</div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="product-image-wrapper m-ws-buy">
-                                                <div class="single-products">
-                                                    <div class="productinfo">
-                                                        <div class="itemjr">
-                                                            <div class="iwrap">
-                                                                <a title="Upgraded U8 Smart Watch" target="_self" href="" class="ia">
-                                                                    <div class="item-market profit f-sp-flag-profit">
-                                                                        <div class="item-market-value">302%</div>
-                                                                    </div>
-                                                                    <img class="ipic" alt="Upgraded U8 Smart Watch" src="{% static 'common/images/ltoimg7.jpg' %}" >
-                                                                </a>
-                                                            </div>
-                                                            <div class="info">
-                                                                <div class="title">
-                                                                    <a target="_self" title="Upgraded U8 Smart Watch" href="#">
-                                                                        Upgraded U8 Smart Watch
-                                                                    </a>
-                                                                </div>
-                                                                <a target="_self" href="#" class="price">
-                                                                    <div class="line">
-                                                                        <span class="discounted-price">US $7.20</span>/ Piece
-                                                                    </div>
-                                                                    <div class="line">Rec.retail price: US $29.00</div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="product-image-wrapper m-ws-buy">
-                                                <div class="single-products">
-                                                    <div class="productinfo">
-                                                        <div class="itemjr">
-                                                            <div class="iwrap">
-                                                                <a title="Upgraded U8 Smart Watch" target="_self" href="" class="ia">
-                                                                    <div class="item-market profit f-sp-flag-profit">
-                                                                        <div class="item-market-value">302%</div>
-                                                                    </div>
-                                                                    <img class="ipic" alt="Upgraded U8 Smart Watch" src="{% static 'common/images/ltoimg8.jpg' %}" >
-                                                                </a>
-                                                            </div>
-                                                            <div class="info">
-                                                                <div class="title">
-                                                                    <a target="_self" title="Upgraded U8 Smart Watch" href="#">
-                                                                        Upgraded U8 Smart Watch
-                                                                    </a>
-                                                                </div>
-                                                                <a target="_self" href="#" class="price">
-                                                                    <div class="line">
-                                                                        <span class="discounted-price">US $7.20</span>/ Piece
-                                                                    </div>
-                                                                    <div class="line">Rec.retail price: US $29.00</div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <a class="left recommended-item-control" href="#recommended-item-carousel3" data-slide="prev">
+                                        <i class="fa fa-angle-left"></i>
+                                    </a>
+                                    <a class="right recommended-item-control" href="#recommended-item-carousel3" data-slide="next">
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
                                 </div>
-                                <a class="left recommended-item-control" href="#recommended-item-carousel3" data-slide="prev">
-                                    <i class="fa fa-angle-left"></i>
-                                </a>
-                                <a class="right recommended-item-control" href="#recommended-item-carousel3" data-slide="next">
-                                    <i class="fa fa-angle-right"></i>
-                                </a>
-                            </div>
-                        </div><!--/recommended_items-->
+                            </div><!--/recommended_items-->
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            {% endif %}
         </div>
     </div>
     <!-- /#content -->
