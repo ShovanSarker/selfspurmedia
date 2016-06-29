@@ -52,6 +52,9 @@ def home(request):
     brands = Brand.objects.filter(isActive=True)
     types = Type.objects.filter(isActive=True)
     categories = Category.objects.filter(isActive=True)
+    featured_products1 = Product.objects.filter(isFeatured=True)[0:3]
+    featured_products2 = Product.objects.filter(isFeatured=True)[4:7]
+    featured_products3 = Product.objects.filter(isFeatured=True)[8:11]
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
         return render(request, 'common/index.sho', {'admin': userObject.isAdmin,
@@ -60,11 +63,17 @@ def home(request):
                                                     'types': types,
                                                     'categories': categories,
                                                     'userName': userObject.name,
+                                                    'featured_products1': featured_products1,
+                                                    'featured_products2': featured_products2,
+                                                    'featured_products3': featured_products3,
                                                     'registered': True})
     else:
         return render(request, 'common/index.sho', {'registered': False,
                                                     'brands': brands,
                                                     'types': types,
+                                                    'featured_products1': featured_products1,
+                                                    'featured_products2': featured_products2,
+                                                    'featured_products3': featured_products3,
                                                     'categories': categories})
 
 
