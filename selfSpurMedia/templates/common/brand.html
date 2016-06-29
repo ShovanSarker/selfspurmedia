@@ -9,7 +9,7 @@
                 <ul class="breadcrumb">
                     <li><a href="{% url 'home'%}">Home</a>
                     </li>
-                    <li>Categories</li>
+                    <li>Brands</li>
                 </ul>
             </div>
 
@@ -19,14 +19,14 @@
                 <div class="panel panel-default sidebar-menu">
 
                     <div class="panel-heading">
-                        <h3 class="panel-title">Categories</h3>
+                        <h3 class="panel-title">Brands</h3>
                     </div>
 
                     <div class="panel-body">
                         <ul class="nav nav-pills nav-stacked category-menu">
                             {% for category in all_categories %}
                                 <li>
-                                    <a href="/categories/{{ category.id }}">{{ category.name }}</a>
+                                    <a href="/brands/{{ category.id }}">{{ category.name }}</a>
                                 </li>
                             {% endfor %}
                         </ul>
@@ -37,7 +37,7 @@
             <div class="col-md-9">
                 <div class="box">
                     <h2 class="gap">{{ this_category.name }}</h2>
-                    <p class="title">Products regarding this category are given below</p>
+                    <p class="title">Products regarding this brand are given below</p>
                 </div>
 
                 <div class="row products">
@@ -57,7 +57,6 @@
 									</span>
                                         <h3><a target="_self" title="" href="/product/{{ item.id }}">{{ item.name }}</a></h3>
                                         <p>
-
                                         <p><big><big>
                                         <span class="starRating">
                                             {% if item.totalNumberOfStars == 1 %} <span>☆</span> {% endif %}
@@ -76,8 +75,7 @@
                         </div>
                     {% endfor %}
                     <!-- /.col-md-4 -->
-                </div>
-                <!-- /.products -->
+                </div>                <!-- /.products -->
 
             </div>
             <!-- /.col-md-9 -->

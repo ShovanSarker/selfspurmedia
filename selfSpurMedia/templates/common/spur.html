@@ -68,7 +68,7 @@
                                     <label class="control-label">Type</label>
                                     <select class="form-control" name="type">
                                         {% for type in all_type %}
-                                        <option value="type.id">type.name</option>
+                                            <option value="{{ type.id }}">{{ type.name }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -77,7 +77,7 @@
                                     <label class="control-label">Category</label>
                                     <select class="form-control" name="category">
                                         {% for category in all_category %}
-                                        <option value="category.id">category.name</option>
+                                            <option value="{{ category.id }}">{{ category.name }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -86,7 +86,7 @@
                                     <label class="control-label">Brand</label>
                                     <select class="form-control" name="brand">
                                         {% for brand in all_brand %}
-                                        <option value="brand.id">brand.name</option>
+                                            <option value="{{ brand.id }}">{{ brand.name }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>

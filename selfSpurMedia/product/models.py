@@ -53,6 +53,7 @@ class Product(models.Model):
     totalNumberOfRating = models.IntegerField(default=0)
     totalNumberOfStars = models.IntegerField(default=0)
     isActive = models.BooleanField(default=True)
+    isFeatured = models.BooleanField(default=False)
     isPendingForApproval = models.BooleanField(default=True)
     dateAdded = models.DateTimeField(auto_now=False, auto_now_add=True)
 
