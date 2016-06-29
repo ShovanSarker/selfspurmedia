@@ -1,5 +1,4 @@
 from django.db import models
-from product.models import Category
 
 # Create your models here.
 
@@ -26,9 +25,9 @@ class Settings(models.Model):
     bannerImage3 = models.FileField("BannerImage3", upload_to="settingsImages", blank=True, null=True)
     advertise1 = models.FileField("AdvImage1", upload_to="settingsImages", blank=True, null=True)
     advertise2 = models.FileField("AdvImage2", upload_to="settingsImages", blank=True, null=True)
-    scroller1 = models.ForeignKey(Category, related_name="categoryForScroller1", null=True, blank=True)
-    scroller2 = models.ForeignKey(Category, related_name="categoryForScroller2", null=True, blank=True)
-    scroller3 = models.ForeignKey(Category, related_name="categoryForScroller3", null=True, blank=True)
+    scroller1 = models.CharField(max_length=74, blank=True, null=True)
+    scroller2 = models.CharField(max_length=74, blank=True, null=True)
+    scroller3 = models.CharField(max_length=74, blank=True, null=True)
     address = models.CharField(max_length=74, blank=True, null=True)
     callCenterNumber = models.CharField(max_length=20, blank=True, null=True)
     howItWorksStep1Image = models.FileField("HowStep1Image", upload_to="settingsImages", blank=True, null=True)

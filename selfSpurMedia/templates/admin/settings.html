@@ -70,16 +70,16 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Insert A Logo</h4>
                 </div>
-                <form action="#">
+                <form action="/settings/?logo=true" method="post" enctype="multipart/form-data">{% csrf_token %}
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Upload a logo</label>
-                            <input name="logo" type="file" id="logoinput">
+                            <input name="logo" type="file" id="logoinput" required>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
                 </form>
             </div><!-- /.modal-content -->
@@ -94,24 +94,24 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Upload banner Images</h4>
                 </div>
-                <form action="#">
+                <form action="/settings/?banner=true" method="post" enctype="multipart/form-data">{% csrf_token %}
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Banner1</label>
-                            <input name="banner1" type="file" id="banner1">
+                            <input name="banner1" type="file" id="banner1" required>
                         </div>
                         <div class="form-group">
                             <label>Banner2</label>
-                            <input name="banner2" type="file" id="banner2">
+                            <input name="banner2" type="file" id="banner2" required>
                         </div>
                         <div class="form-group">
                             <label>Banner3</label>
-                            <input name="banner3" type="file" id="banner3">
+                            <input name="banner3" type="file" id="banner3" required>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
                 </form>
             </div><!-- /.modal-content -->
@@ -126,20 +126,20 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Upload Advertisement</h4>
                 </div>
-                <form action="#">
+                <form action="/settings/?advertise=true" method="post" enctype="multipart/form-data">{% csrf_token %}
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Advertisement1</label>
-                            <input name="adv1" type="file" id="adv1">
+                            <input name="adv1" type="file" id="adv1" required>
                         </div>
                         <div class="form-group">
                             <label>Advertisement2</label>
-                            <input name="adv2" type="file" id="adv2">
+                            <input name="adv2" type="file" id="adv2" required>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
                 </form>
             </div><!-- /.modal-content -->
@@ -154,11 +154,11 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Scroller</h4>
                 </div>
-                <form action="#">
+                <form action="/settings/?scroller=true" method="post">{% csrf_token %}
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Top Scroller</label>
-                            <select class="form-control" name="headline1" id="hl1">
+                            <select class="form-control" name="headline1" id="hl1" required>
                                 <option value="list1">list1</option>
                                 <option value="list2">list2</option>
                                 <option value="list3">list3</option>
@@ -166,7 +166,7 @@
                         </div>
                         <div class="form-group">
                             <label>Middle Scroller</label>
-                            <select class="form-control" name="headline1" id="hl2">
+                            <select class="form-control" name="headline2" id="hl2" required>
                                 <option value="list1">list1</option>
                                 <option value="list2">list2</option>
                                 <option value="list3">list3</option>
@@ -174,7 +174,7 @@
                         </div>
                         <div class="form-group">
                             <label>Bottom Scroller</label>
-                            <select class="form-control" name="headline3" id="hl3">
+                            <select class="form-control" name="headline3" id="hl3" required>
                                 <option value="list1">list1</option>
                                 <option value="list2">list2</option>
                                 <option value="list3">list3</option>
@@ -183,7 +183,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
                 </form>
             </div><!-- /.modal-content -->
@@ -198,20 +198,20 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Insert Information</h4>
                 </div>
-                <form action="#">
+                <form action="/settings/?address=true" method="post">{% csrf_token %}
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Address</label>
-                            <input class="form-control" name="add" type="text" id="add">
+                            <input class="form-control" name="add" type="text" id="add" required>
                         </div>
                         <div class="form-group">
                             <label>Call Center</label>
-                            <input class="form-control" name="cc" type="text" id="cc">
+                            <input class="form-control" name="cc" type="text" id="cc" required>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
                 </form>
             </div><!-- /.modal-content -->
@@ -226,68 +226,68 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">How it Works</h4>
                 </div>
-                <form action="#">
+                <form action="/settings/?how=true" method="post" enctype="multipart/form-data">{% csrf_token %}
                     <div class="modal-body">
                         <h4>Step 1</h4>
                         <div class="form-group">
                             <label>Step Image</label>
-                            <input name="stepimage1" type="file" id="stepimage1">
+                            <input name="stepimage1" type="file" id="stepimage1" required>
                         </div>
                         <div class="form-group">
                             <label>Title</label>
-                            <input class="form-control" name="steptitle1" type="text" id="steptitle1">
+                            <input class="form-control" name="steptitle1" type="text" id="steptitle1" required>
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <input class="form-control" name="stepdescription1" type="text" id="stepdescription1">
+                            <input class="form-control" name="stepdescription1" type="text" id="stepdescription1" required>
                         </div>
                         <hr>
                         <h4>Step 2</h4>
                         <div class="form-group">
                             <label>Step Image</label>
-                            <input name="stepimage2" type="file" id="stepimage2">
+                            <input name="stepimage2" type="file" id="stepimage2" required>
                         </div>
                         <div class="form-group">
                             <label>Title</label>
-                            <input class="form-control" name="steptitle2" type="text" id="steptitle2">
+                            <input class="form-control" name="steptitle2" type="text" id="steptitle2" required>
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <input class="form-control" name="stepdescription2" type="text" id="stepdescription2">
+                            <input class="form-control" name="stepdescription2" type="text" id="stepdescription2" required>
                         </div>
                         <hr>
                         <h4>Step 3</h4>
                         <div class="form-group">
                             <label>Step Image</label>
-                            <input name="stepimage3" type="file" id="stepimage3">
+                            <input name="stepimage3" type="file" id="stepimage3" required>
                         </div>
                         <div class="form-group">
                             <label>Title</label>
-                            <input class="form-control" name="steptitle3" type="text" id="steptitle3">
+                            <input class="form-control" name="steptitle3" type="text" id="steptitle3" required>
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <input class="form-control" name="stepdescription3" type="text" id="stepdescription3">
+                            <input class="form-control" name="stepdescription3" type="text" id="stepdescription3" required>
                         </div>
                         <hr>
                         <h4>Step 4</h4>
                         <div class="form-group">
                             <label>Step Image</label>
-                            <input name="stepimage4" type="file" id="stepimage4">
+                            <input name="stepimage4" type="file" id="stepimage4" required>
                         </div>
                         <div class="form-group">
                             <label>Title</label>
-                            <input class="form-control" name="steptitle4" type="text" id="steptitle4">
+                            <input class="form-control" name="steptitle4" type="text" id="steptitle4" required>
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <input class="form-control" name="stepdescription4" type="text" id="stepdescription4">
+                            <input class="form-control" name="stepdescription4" type="text" id="stepdescription4" required>
                         </div>
                     </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
                 </form>
             </div><!-- /.modal-content -->
@@ -302,29 +302,29 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Insert Social Media links</h4>
                 </div>
-                <form action="#">
+                <form action="/settings/?social=true" method="post">{% csrf_token %}
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Facebook</label>
-                            <input class="form-control" name="fb" type="text" id="fb">
+                            <input class="form-control" name="fb" type="text" id="fb" required>
                         </div>
                         <div class="form-group">
                             <label>Twitter</label>
-                            <input class="form-control" name="twitter" type="text" id="twitter">
+                            <input class="form-control" name="twitter" type="text" id="twitter" required>
                         </div>
                         <div class="form-group">
                             <label>Youtube</label>
-                            <input class="form-control" name="youtube" type="text" id="youtube">
+                            <input class="form-control" name="youtube" type="text" id="youtube" required>
                         </div>
                         <div class="form-group">
                             <label>LinkedIn</label>
-                            <input class="form-control" name="linkedin" type="text" id="linkedin">
+                            <input class="form-control" name="linkedin" type="text" id="linkedin" required>
                         </div>
                     </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
                 </form>
             </div><!-- /.modal-content -->
@@ -339,7 +339,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">About Us</h4>
                 </div>
-                <form action="#">
+                <form action="/settings/?about=true" method="post">{% csrf_token %}
                     <div class="modal-body">
                         <div class="form-group">
                             <label>About Us</label>
@@ -349,7 +349,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
                 </form>
             </div><!-- /.modal-content -->

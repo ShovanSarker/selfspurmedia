@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as auth_login
-from subscriber.models import Subscriber
+from subscriber.models import Subscriber, Settings
 from product.models import Product, Brand, Category, Type
 from package.models import Package, PackageRequest, SubscribedPackage
 from review.models import Review
@@ -55,6 +55,8 @@ def home(request):
     featured_products1 = Product.objects.filter(isFeatured=True)[0:3]
     featured_products2 = Product.objects.filter(isFeatured=True)[4:7]
     featured_products3 = Product.objects.filter(isFeatured=True)[8:11]
+    page_settings = Settings.objects.get(id=1)
+    # print(page_settings.logo)
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
         return render(request, 'common/index.sho', {'admin': userObject.isAdmin,
@@ -66,6 +68,7 @@ def home(request):
                                                     'featured_products1': featured_products1,
                                                     'featured_products2': featured_products2,
                                                     'featured_products3': featured_products3,
+                                                    'page_settings': page_settings,
                                                     'registered': True})
     else:
         return render(request, 'common/index.sho', {'registered': False,
@@ -74,6 +77,7 @@ def home(request):
                                                     'featured_products1': featured_products1,
                                                     'featured_products2': featured_products2,
                                                     'featured_products3': featured_products3,
+                                                    'page_settings': page_settings,
                                                     'categories': categories})
 
 
@@ -478,9 +482,95 @@ def package_request(request):
 
 @login_required(login_url='/login/')
 def settings_dash(request):
+    if not Settings.objects.filter(id=1):
+        new_settings = Settings()
+        new_settings.save()
+
     get_data = request.GET
-    # if 'terms' in get_data:
-    #     pass
+    if 'terms' in get_data:
+        post_data = request.POST
+        if 'terms' in post_data:
+            app_setting = Settings.objects.get(id=1)
+            app_setting.termsAndCondition = post_data['terms']
+            app_setting.save()
+        return redirect('/settings')
+    if 'about' in get_data:
+        post_data = request.POST
+        if 'aboutus' in post_data:
+            app_setting = Settings.objects.get(id=1)
+            app_setting.aboutUS = post_data['aboutus']
+            app_setting.save()
+        return redirect('/settings')
+    if 'social' in get_data:
+        post_data = request.POST
+        if 'fb' and 'youtube' in post_data:
+            app_setting = Settings.objects.get(id=1)
+            app_setting.facebookURL = post_data['fb']
+            app_setting.twitterURL = post_data['twitter']
+            app_setting.youtubeURL = post_data['youtube']
+            app_setting.linkedinURL = post_data['linkedin']
+            app_setting.save()
+        return redirect('/settings')
+    if 'how' in get_data:
+        post_data = request.POST
+        file_data = request.FILES
+        if 'stepimage1' and 'steptitle1' in post_data:
+            app_setting = Settings.objects.get(id=1)
+            app_setting.howItWorksStep1Image = file_data['stepimage1']
+            app_setting.howItWorksStep1Title = post_data['steptitle1']
+            app_setting.howItWorksStep1Description = post_data['stepdescription1']
+            app_setting.howItWorksStep2Image = file_data['stepimage2']
+            app_setting.howItWorksStep2Title = post_data['steptitle2']
+            app_setting.howItWorksStep2Description = post_data['stepdescription2']
+            app_setting.howItWorksStep3Image = file_data['stepimage3']
+            app_setting.howItWorksStep3Title = post_data['steptitle3']
+            app_setting.howItWorksStep3Description = post_data['stepdescription3']
+            app_setting.howItWorksStep4Image = file_data['stepimage4']
+            app_setting.howItWorksStep4Title = post_data['steptitle4']
+            app_setting.howItWorksStep4Description = post_data['stepdescription4']
+            app_setting.save()
+        return redirect('/settings')
+    if 'address' in get_data:
+        post_data = request.POST
+        if 'add' and 'cc' in post_data:
+            app_setting = Settings.objects.get(id=1)
+            app_setting.address = post_data['add']
+            app_setting.callCenterNumber = post_data['cc']
+            app_setting.save()
+        return redirect('/settings')
+    if 'scroller' in get_data:
+        post_data = request.POST
+        if 'headline1' and 'headline2' in post_data:
+            app_setting = Settings.objects.get(id=1)
+            app_setting.scroller1 = post_data['headline1']
+            app_setting.scroller2 = post_data['headline2']
+            app_setting.scroller3 = post_data['headline3']
+            app_setting.save()
+        return redirect('/settings')
+    if 'advertise' in get_data:
+        file_data = request.FILES
+        if 'adv1' and 'adv2' in file_data:
+            app_setting = Settings.objects.get(id=1)
+            app_setting.advertise1 = file_data['adv1']
+            app_setting.advertise2 = file_data['adv2']
+            app_setting.save()
+        return redirect('/settings')
+    if 'banner' in get_data:
+        file_data = request.FILES
+        if 'banner1' and 'banner2' in file_data:
+            app_setting = Settings.objects.get(id=1)
+            app_setting.bannerImage1 = file_data['banner1']
+            app_setting.bannerImage2 = file_data['banner2']
+            app_setting.bannerImage3 = file_data['banner3']
+            app_setting.save()
+        return redirect('/settings')
+    if 'logo' in get_data:
+        file_data = request.FILES
+        if 'logo' in file_data:
+            app_setting = Settings.objects.get(id=1)
+            app_setting.logoImage = file_data['logo']
+            app_setting.save()
+        return redirect('/settings')
     return render(request, 'admin/settings.html', {})
 
 '''

@@ -62,25 +62,25 @@
 <header class="thd">
     <div class="container">
         <div class="col-sm-2">
-            <a href="#" class="J-sc-hd-i-logo" >
-                <img src="{% static 'common/images/logo.png' %}" alt="" style="padding-top: 10px;"/>
+            <a href="/" class="J-sc-hd-i-logo" >
+                <img src="/media/{{ page_settings.logoImage }}" alt="" style="padding-top: 10px;"/>
             </a>
         </div>
         <div class="col-sm-2">
             <div class="social_media_icons clearfix" style="padding-top: 15px;">
-                <a class="social_media_icon" href="#" target="_blank" title="">
+                <a class="social_media_icon" href="{{ page_settings.facebookURL }}" target="_blank" title="">
 					<span class="icon_blank icon_facebook">
 					<span class="social_text">facebook</span></span>
                 </a>
-                <a class="social_media_icon" href="#" target="_blank" title="">
+                <a class="social_media_icon" href="{{ page_settings.twitterURL }}" target="_blank" title="">
 					<span class="icon_blank icon_twitter">
 					<span class="social_text">twitter</span></span>
                 </a>
-                <a class="social_media_icon" href="" target="_blank" title="">
+                <a class="social_media_icon" href="{{ page_settings.youtubeURL }}" target="_blank" title="">
 					<span class="icon_blank icon_youtube">
 					<span class="social_text">youtube</span>
 					</span></a>
-                <a class="social_media_icon" href="#" target="_blank" title=""><span class="icon_blank icon_linkedin">
+                <a class="social_media_icon" href="{{ page_settings.linkedinURL }}" target="_blank" title=""><span class="icon_blank icon_linkedin">
 					<span class="social_text">linkedin</span></span>
                 </a>
             </div>
