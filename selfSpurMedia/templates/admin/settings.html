@@ -45,6 +45,14 @@
                             <td class="danger">Social Network links</td>
                             <td><button type="button" class="btn btn-info btn-xs btn-block" data-toggle="modal" data-target="#socialModal">Fill up</button></td>
                         </tr>
+                        <tr>
+                            <td class="info">About Us</td>
+                            <td><button type="button" class="btn btn-success btn-xs btn-block" data-toggle="modal" data-target="#aboutUs">Fill up</button></td>
+                        </tr>
+                        <tr>
+                            <td class="success">Terms & Conditions</td>
+                            <td><button type="button" class="btn btn-primary btn-xs btn-block" data-toggle="modal" data-target="#terms">Fill up</button></td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -78,7 +86,6 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-
     {#modal for banner#}
     <div class="modal fade" id="bannerModal" tabindex="-1" role="dialog">
         <div class="modal-dialog">
@@ -111,7 +118,6 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-
     {#modal for advertisment#}
     <div class="modal fade" id="advModal" tabindex="-1" role="dialog">
         <div class="modal-dialog">
@@ -139,7 +145,6 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
 
     {#modal for scroller#}
     <div class="modal fade" id="scrollerModal" tabindex="-1" role="dialog">
@@ -185,7 +190,6 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-
     {#modal for address#}
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog">
         <div class="modal-dialog">
@@ -213,7 +217,6 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
 
     {#modal for How it works#}
     <div class="modal fade" id="howModal" tabindex="-1" role="dialog">
@@ -291,7 +294,6 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-
     {#modal for How it works#}
     <div class="modal fade" id="socialModal" tabindex="-1" role="dialog">
         <div class="modal-dialog">
@@ -323,6 +325,56 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    {#    modal for about us#}
+    <div class="modal fade" id="aboutUs" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">About Us</h4>
+                </div>
+                <form action="#">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>About Us</label>
+                            <textarea class="form-control" name="aboutus" type="text" id="linkedin"></textarea>..
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    {#    modal for terms and condition#}
+    <div class="modal fade" id="terms" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Terms & Condition</h4>
+                </div>
+                <form action="/settings/?terms=true" method="post">{% csrf_token %}
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Terms & Conditions</label>
+                            <textarea class="form-control" name="terms" type="text" id="linkedin"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
                 </form>
             </div><!-- /.modal-content -->

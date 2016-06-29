@@ -478,6 +478,9 @@ def package_request(request):
 
 @login_required(login_url='/login/')
 def settings_dash(request):
+    get_data = request.GET
+    # if 'terms' in get_data:
+    #     pass
     return render(request, 'admin/settings.html', {})
 
 '''
