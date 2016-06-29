@@ -474,6 +474,12 @@ def package_request(request):
     else:
         return render(request, 'admin/package_request.sho', {'requested_packages': requested_packages,
                                                              'subscribed_packages': subscribed_packages})
+
+
+@login_required(login_url='/login/')
+def settings_dash(request):
+    return render(request, 'admin/settings.html', {})
+
 '''
 End admin section
 '''
