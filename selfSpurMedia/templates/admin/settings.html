@@ -159,25 +159,25 @@
                         <div class="form-group">
                             <label>Top Scroller</label>
                             <select class="form-control" name="headline1" id="hl1" required>
-                                <option value="list1">list1</option>
-                                <option value="list2">list2</option>
-                                <option value="list3">list3</option>
+                                {% for category in all_categories %}
+                                    <option value="{{ category.id }}">{{ category.name }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Middle Scroller</label>
                             <select class="form-control" name="headline2" id="hl2" required>
-                                <option value="list1">list1</option>
-                                <option value="list2">list2</option>
-                                <option value="list3">list3</option>
+                                {% for category in all_categories %}
+                                    <option value="{{ category.id }}">{{ category.name }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Bottom Scroller</label>
                             <select class="form-control" name="headline3" id="hl3" required>
-                                <option value="list1">list1</option>
-                                <option value="list2">list2</option>
-                                <option value="list3">list3</option>
+                                {% for category in all_categories %}
+                                    <option value="{{ category.id }}">{{ category.name }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                     </div>

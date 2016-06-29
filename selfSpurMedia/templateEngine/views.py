@@ -55,6 +55,23 @@ def home(request):
     featured_products1 = Product.objects.filter(isFeatured=True)[0:3]
     featured_products2 = Product.objects.filter(isFeatured=True)[4:7]
     featured_products3 = Product.objects.filter(isFeatured=True)[8:11]
+    top_scroll_category_id = Settings.objects.get(id=1).scroller1
+    top_scroll_category = Category.objects.get(id=top_scroll_category_id)
+    top_scroll_products1 = Product.objects.filter(category=top_scroll_category)[0:3]
+    top_scroll_products2 = Product.objects.filter(category=top_scroll_category)[4:7]
+    top_scroll_products3 = Product.objects.filter(category=top_scroll_category)[8:11]
+
+    mid_scroll_category_id = Settings.objects.get(id=1).scroller2
+    mid_scroll_category = Category.objects.get(id=mid_scroll_category_id)
+    mid_scroll_products1 = Product.objects.filter(category=mid_scroll_category)[0:3]
+    mid_scroll_products2 = Product.objects.filter(category=mid_scroll_category)[4:7]
+    mid_scroll_products3 = Product.objects.filter(category=mid_scroll_category)[8:11]
+
+    bot_scroll_category_id = Settings.objects.get(id=1).scroller3
+    bot_scroll_category = Category.objects.get(id=bot_scroll_category_id)
+    bot_scroll_products1 = Product.objects.filter(category=bot_scroll_category)[0:3]
+    bot_scroll_products2 = Product.objects.filter(category=bot_scroll_category)[4:7]
+    bot_scroll_products3 = Product.objects.filter(category=bot_scroll_category)[8:11]
     page_settings = Settings.objects.get(id=1)
     # print(page_settings.logo)
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
@@ -69,11 +86,35 @@ def home(request):
                                                     'featured_products2': featured_products2,
                                                     'featured_products3': featured_products3,
                                                     'page_settings': page_settings,
+                                                    'top_scroll_category': top_scroll_category,
+                                                    'mid_scroll_category': mid_scroll_category,
+                                                    'bot_scroll_category': bot_scroll_category,
+                                                    'top_scroll_products1': top_scroll_products1,
+                                                    'top_scroll_products2': top_scroll_products2,
+                                                    'top_scroll_products3': top_scroll_products3,
+                                                    'mid_scroll_products1': mid_scroll_products1,
+                                                    'mid_scroll_products2': mid_scroll_products2,
+                                                    'mid_scroll_products3': mid_scroll_products3,
+                                                    'bot_scroll_products1': bot_scroll_products1,
+                                                    'bot_scroll_products2': bot_scroll_products2,
+                                                    'bot_scroll_products3': bot_scroll_products3,
                                                     'registered': True})
     else:
         return render(request, 'common/index.sho', {'registered': False,
                                                     'brands': brands,
                                                     'types': types,
+                                                    'top_scroll_category': top_scroll_category,
+                                                    'mid_scroll_category': mid_scroll_category,
+                                                    'bot_scroll_category': bot_scroll_category,
+                                                    'top_scroll_products1': top_scroll_products1,
+                                                    'top_scroll_products2': top_scroll_products2,
+                                                    'top_scroll_products3': top_scroll_products3,
+                                                    'mid_scroll_products1': mid_scroll_products1,
+                                                    'mid_scroll_products2': mid_scroll_products2,
+                                                    'mid_scroll_products3': mid_scroll_products3,
+                                                    'bot_scroll_products1': bot_scroll_products1,
+                                                    'bot_scroll_products2': bot_scroll_products2,
+                                                    'bot_scroll_products3': bot_scroll_products3,
                                                     'featured_products1': featured_products1,
                                                     'featured_products2': featured_products2,
                                                     'featured_products3': featured_products3,
@@ -482,6 +523,7 @@ def package_request(request):
 
 @login_required(login_url='/login/')
 def settings_dash(request):
+    all_categories = Category.objects.all()
     if not Settings.objects.filter(id=1):
         new_settings = Settings()
         new_settings.save()
@@ -571,7 +613,7 @@ def settings_dash(request):
             app_setting.logoImage = file_data['logo']
             app_setting.save()
         return redirect('/settings')
-    return render(request, 'admin/settings.html', {})
+    return render(request, 'admin/settings.html', {'all_categories': all_categories})
 
 '''
 End admin section

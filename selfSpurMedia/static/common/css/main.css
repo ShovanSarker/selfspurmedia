@@ -1360,22 +1360,22 @@ body{
     overflow-x: hidden;
 }
 .guide-pic.guide-inquiry {
-    background-image: url(../images/tb1.png);
+    /*background-image: url(../images/tb1.png);*/
     background-repeat: no-repeat;
     background-size: 100%;
 }
 .guide-pic.guide-order {
-    background-image: url(../images/tb2.png);
+    /*background-image: url(../images/tb2.png);*/
     background-repeat: no-repeat;
     background-size: 100%;
 }
 .guide-pic.guide-payment {
-    background-image: url(../images/tb3.png);
+    /*background-image: url(../images/tb3.png);*/
     background-repeat: no-repeat;
     background-size: 100%;
 }
 .guide-pic.guide-ship {
-    background-image: url(../images/tb4.png);
+    /*background-image: url(../images/tb4.png);*/
     background-repeat: no-repeat;
     background-size: 100%;
 }
