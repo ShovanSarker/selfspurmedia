@@ -81,6 +81,9 @@
                         <a href="{% url 'subscriber'%}"><i class="fa fa-dashboard fa-fw"></i> Subscribers</a>
                     </li>
                     <li>
+                        <a href="{% url 'posts'%}"><i class="fa fa-dashboard fa-fw"></i> All Listings</a>
+                    </li>
+                    <li>
                         <a href="{% url 'package'%}"><i class="fa fa-dashboard fa-fw"></i> Packages</a>
                     </li>
                     <li>
@@ -100,8 +103,8 @@
         <!-- /.navbar-static-side -->
     </nav>
 
-{% block content %}
-{% endblock %}
+    {% block content %}
+    {% endblock %}
 
 
 </div>

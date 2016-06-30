@@ -35,8 +35,8 @@
             });
             FB.getLoginStatus(function(response) {
                 if (response.status === 'connected') {
-                    $('#auth').val(response.authResponse.accessToken);
-                    $('#uid').val(response.authResponse.userID);
+                    $('.auth').val(response.authResponse.accessToken);
+                    $('.uid').val(response.authResponse.userID);
                     console.log(response.authResponse.accessToken);
 //                alert(response);
                     for(var propertyName in response.authResponse) {
@@ -86,8 +86,8 @@
             console.log('Welcome!  Fetching your information.... ');
             FB.api('/me', function(response) {
 //            console.log('Successful login for: ' + response.name);
-                $('#auth').val(response.authResponse.accessToken);
-                $('#uid').val(response.authResponse.userID);
+                $('.auth').val(response.authResponse.accessToken);
+                $('.uid').val(response.authResponse.userID);
 //            console.log(response.id);
                 //todo heve to make currection
 //            $('#email').val(response.email);
@@ -161,8 +161,18 @@
                                         <td>{{ post.brand.name }}</td>
                                         <td>{{ post.addedBy.name }}</td>
                                         {% if post.isFeatured %}<td><a href="/posts/?toggle={{ post.id }}"><button class="btn btn-info" type="button">Featured</button></a></td>{% else %} <td><a href="/posts/?toggle={{ post.id }}"><button class="btn btn-warning" type="button">Not Featured</button></a></td> {% endif %}
-                                        <td><a href="#" onclick="fblogin();return false;"><div class="new-fb-btn new-fb-1 new-fb-default-anim"><div class="new-fb-1-1"><div class="new-fb-1-1-1" style="padding-right: 5px;padding-left: 0px;">Authenticate to FB before upload </div></div></div></a></td>
-                                        <td></td>
+                                        <td>
+                                            <a href="#" onclick="fblogin();return false;"><div class="new-fb-btn new-fb-1 new-fb-default-anim"><div class="new-fb-1-1"><div class="new-fb-1-1-1" style="padding-right: 5px;padding-left: 0px;">Authenticate to FB before upload </div></div></div></a><br>
+                                            <form action="/upload_photo_fb/" method="post">{% csrf_token %}
+                                                <div class="row">
+                                                    <input type="text" name="uid" hidden="" class="uid">
+                                                    <input type="text" name="auth" hidden="" class="auth">
+                                                    <input type="text" name="pid" hidden="" id="pid" value="{{ post.id }}">
+                                                    <button type="submit" class="btn btn-primary block full-width m-b">Upload to Facebook</button>
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td>not done </td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

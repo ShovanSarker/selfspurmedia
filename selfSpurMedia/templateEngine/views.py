@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+
+import urllib2
+import json
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as auth_login
@@ -237,7 +240,7 @@ def register(request):
                                       isProductOwner=False,
                                       isActive=False)
         new_user_details.save()
-        if 'package'in postdata:
+        if 'package' in postdata:
             package_id = postdata['package']
             selected_package = Package.objects.get(id=package_id)
             print(selected_package.name)
@@ -283,19 +286,18 @@ def submitreview(request, pid):
         old_review_count = this_product.totalNumberOfRating
         old_star_rating = this_product.totalNumberOfStars
         new_star_rating = (int(old_review_count) * int(old_star_rating) +
-                           int(post_data['rating'])) / (int(old_review_count)+1)
+                           int(post_data['rating'])) / (int(old_review_count) + 1)
         new_review_count = int(old_review_count) + 1
         this_product.totalNumberOfRating = new_review_count
         this_product.totalNumberOfStars = new_star_rating
         this_product.save()
 
-        return redirect('/product/'+pid)
+        return redirect('/product/' + pid)
     else:
         return redirect('/register')
 
 
 def submit_spur(request):
-
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
         post_data = request.POST
@@ -373,6 +375,7 @@ def profile(request):
     else:
         return render(request, 'common/contact.sho', {'registered': False})
 
+
 '''
 End common section
 '''
@@ -383,7 +386,6 @@ Start admin section
 
 @login_required(login_url='/login/')
 def dashboard(request):
-
     return render(request, 'admin/index.sho', {})
 
 
@@ -630,6 +632,39 @@ def posts(request):
         return redirect('/posts')
     else:
         return render(request, 'admin/post.html', {'all_posts': all_posts})
+
+
+from fblib import facebook
+
+
+@login_required(login_url='/login/')
+def upload_photo_fb(request):
+    print(request.POST)
+    post_data = request.POST
+    if 'uid' and 'auth' and 'pid' in post_data:
+        uid = post_data['uid']
+        auth = post_data['auth']
+        pid = post_data['pid']
+        info_url = 'https://graph.facebook.com/v2.2/' + uid + '/accounts/?access_token=' + auth
+        response = urllib2.urlopen(info_url)
+        info_raw = response.read()
+        info = json.loads(info_raw)
+        # print(info)
+        for page in info['data']:
+            print(page['id'] + '=> 1124711044266860  ' + pid)
+            if page['id'] == '1124711044266860':
+                at = page['access_token']
+                print(at)
+                graph = facebook.GraphAPI(at)
+                pic = Product.objects.get(id=pid)
+                caption = pic.name + '. For details, visit spur.bigblock.tech/product/' + pid + ' .'
+                # picULR = 'inflack.net:8001/media/' + str(pic.image1)
+                graph.put_photo(image=open("/home/webapps/selfspurmedia/selfspurmedia/static/media/" + str(pic.image1)),
+                                album_path=str(1124823817588916),
+                                album=str(1124823817588916), message=caption)
+        # pageid = '1124711044266860'
+        # at = page['access_token']
+    return redirect('/posts')
 
 
 '''
