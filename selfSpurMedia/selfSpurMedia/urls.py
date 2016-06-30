@@ -2,9 +2,8 @@ from django.conf.urls import patterns, include, url
 from templateEngine.views import home, product, products, register, contact, spur, \
     dashboard, subscriber, logout_now, login, unblock, block, active, package, \
     package_request, submit_spur, other_request, categories, brands, types, submitreview, settings_dash, \
-    about, terms, changepass, profile
-
-    package_request, submit_spur, other_request, categories, brands, types, submitreview,\
+    about, terms, changepass, profile, package_request, submit_spur, \
+    other_request, categories, brands, types, submitreview,\
     settings_dash, posts, upload_photo_fb
 from django.conf.urls.static import static
 from django.conf import settings
