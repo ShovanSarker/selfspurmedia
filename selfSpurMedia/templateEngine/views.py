@@ -361,17 +361,52 @@ def contact(request):
     else:
         return render(request, 'common/contact.sho', {'registered': False})
 
+def about(request):
+    if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
+        userObject = Subscriber.objects.get(email=request.session['user'])
+
+        return render(request, 'common/about.html', {'admin': userObject.isAdmin,
+                                                      'productOwner': userObject.isProductOwner,
+                                                      'userName': userObject.name,
+                                                      'registered': True})
+    else:
+        return render(request, 'common/about.html', {'registered': False})
+
+
+def terms(request):
+    if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
+        userObject = Subscriber.objects.get(email=request.session['user'])
+
+        return render(request, 'common/terms.html', {'admin': userObject.isAdmin,
+                                                      'productOwner': userObject.isProductOwner,
+                                                      'userName': userObject.name,
+                                                      'registered': True})
+    else:
+        return render(request, 'common/terms.html', {'registered': False})
+
+
+def changepass(request):
+    if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
+        userObject = Subscriber.objects.get(email=request.session['user'])
+
+        return render(request, 'common/change_password.html', {'admin': userObject.isAdmin,
+                                                      'productOwner': userObject.isProductOwner,
+                                                      'userName': userObject.name,
+                                                      'registered': True})
+    else:
+        return render(request, 'common/change_password.html', {'registered': False})
+
 
 def profile(request):
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
 
-        return render(request, 'common/contact.sho', {'admin': userObject.isAdmin,
+        return render(request, 'common/profile.html', {'admin': userObject.isAdmin,
                                                       'productOwner': userObject.isProductOwner,
                                                       'userName': userObject.name,
                                                       'registered': True})
     else:
-        return render(request, 'common/contact.sho', {'registered': False})
+        return render(request, 'common/profile.html', {'registered': False})
 
 '''
 End common section

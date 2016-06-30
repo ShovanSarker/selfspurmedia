@@ -162,13 +162,16 @@
             <div class="col-sm-3">
                 <h5>Customer Services</h5>
                 <dl>
-                    <dd><a href="#" target="_blank" >Contact Us</a></dd>
+                    <dd><a href="{% url 'contact' %}" target="_blank" >Contact Us</a></dd>
                 </dl>
             </div>
             <div class="col-sm-3">
                 <h5>About Selfspurmedia</h5>
                 <dl>
-                    <dd><a href="#" target="_blank">About us</a></dd>
+                    <dd><a href="{% url 'about' %}" target="_blank">About us</a></dd>
+                </dl>
+                <dl>
+                    <dd><a href="{% url 'terms' %}" target="_blank">Terms & Condition</a></dd>
                 </dl>
             </div>
             <div class="col-sm-3">
