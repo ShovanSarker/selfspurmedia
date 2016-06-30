@@ -12,6 +12,7 @@
     <link href="{% static 'common/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'common/css/font-awesome.min.css' %}" rel="stylesheet">
     <link href="{% static 'common/css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'common/css/magnific-popup.css' %}" rel="stylesheet">
     <link href="{% static 'common/css/responsive.css' %}" rel="stylesheet">
 
 
@@ -19,40 +20,76 @@
     <link href="{% static 'common/css/footer.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'common/css/star.css' %}">
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+    <script>
+        $(function() {
+            var availableTags = [
+                "ActionScript",
+                "AppleScript",
+                "Asp",
+                "BASIC",
+                "C",
+                "C++",
+                "Clojure",
+                "COBOL",
+                "ColdFusion",
+                "Erlang",
+                "Fortran",
+                "Groovy",
+                "Haskell",
+                "Java",
+                "JavaScript",
+                "Lisp",
+                "Perl",
+                "PHP",
+                "Python",
+                "Ruby",
+                "Scala",
+                "Scheme"
+            ];
+            $("#tags").autocomplete({
+                source: availableTags
+            });
+        });
+    </script>
+
 </head><!--/head-->
 
 <body>
 <header class="thd">
     <div class="container">
         <div class="col-sm-2">
-            <a href="#" class="J-sc-hd-i-logo">
-                <img src="{% static 'common/images/logo.png' %}" alt="" />
+            <a href="/" class="J-sc-hd-i-logo" >
+                <img src="/media/{{ page_settings.logoImage }}" alt="" style="padding-top: 10px;"/>
             </a>
         </div>
         <div class="col-sm-2">
-            <div class="social_media_icons clearfix">
-                <a class="social_media_icon" href="#" target="_blank" title="">
+            <div class="social_media_icons clearfix" style="padding-top: 15px;">
+                <a class="social_media_icon" href="{{ page_settings.facebookURL }}" target="_blank" title="">
 					<span class="icon_blank icon_facebook">
 					<span class="social_text">facebook</span></span>
                 </a>
-                <a class="social_media_icon" href="#" target="_blank" title="">
+                <a class="social_media_icon" href="{{ page_settings.twitterURL }}" target="_blank" title="">
 					<span class="icon_blank icon_twitter">
 					<span class="social_text">twitter</span></span>
                 </a>
-                <a class="social_media_icon" href="" target="_blank" title="">
+                <a class="social_media_icon" href="{{ page_settings.youtubeURL }}" target="_blank" title="">
 					<span class="icon_blank icon_youtube">
 					<span class="social_text">youtube</span>
 					</span></a>
-                <a class="social_media_icon" href="#" target="_blank" title=""><span class="icon_blank icon_linkedin">
+                <a class="social_media_icon" href="{{ page_settings.linkedinURL }}" target="_blank" title=""><span class="icon_blank icon_linkedin">
 					<span class="social_text">linkedin</span></span>
                 </a>
             </div>
 
         </div>
         <div class="col-sm-4">
-            <form class="form-search">
+            <form class="form-search" style="padding-top: 15px;">
                 <div class="input-append">
-                    <input type="text" class="col-sm-9" placeholder="What are you looking for...">
+                    <input id="tags" type="text" class="col-sm-9" placeholder="What are you looking for...">
                     <button type="submit" class="btn bbg"><i class="fa fa-search"></i> Search</button>
                 </div>
             </form>
@@ -120,60 +157,43 @@
 <!--Footer-->
 
 <footer id="footer"><!--Footer-->
-    <div class="scc-trade-alert-box">
-        <div class="scc-t-a-b-tips">
-            <i class="t-icon-mail"></i>
-            <span class="J-m-t-text">Trade Alert - Delivering the latest product trends and industry news straight to your inbox.</span>
-        </div>
-        <div class="J-scc-search J-ta-section scc-t-a-search" style="display: block;">
-            <input type="text" placeholder="Your email" class="J-search-text scc-t-a-search-text ui2-textfield ui2-textfield-single ui2-textfield-large" value="">
-            <input type="button" class="J-btn-search scc-t-a-search-button ui2-button ui2-button-default ui2-button-normal ui2-button-large" value="Subscribe">
-            <div class="J-error-tips scc-t-a-search-tips">
-                Weâ€™ll never share your email address with a third-party.
-            </div>
-        </div>
-    </div>
-    <hr>
     <div class="row">
         <div class="ui-footer-sitemap">
             <div class="col-sm-3">
                 <h5>Customer Services</h5>
                 <dl>
-                    <dd><a href="#" target="_blank" >Help Center</a></dd>
-                    <dd><a  href="#" target="_blank">Submit a Complaint</a></dd>
+                    <dd><a href="#" target="_blank" >Contact Us</a></dd>
                 </dl>
             </div>
             <div class="col-sm-3">
                 <h5>About Selfspurmedia</h5>
                 <dl>
                     <dd><a href="#" target="_blank">About us</a></dd>
-                    <dd><a href="#" target="_blank">Sitemap</a></dd>
                 </dl>
             </div>
             <div class="col-sm-3">
                 <h5>To Know Information</h5>
                 <dl>
-                    <dd><a href="#" target="_blank" >How it works</a></dd>
-                    <dd><a href="#" target="_blank" >Terms & Condition</a></dd>
-                    <dd><a href="#" target="_blank" >Privacy Policy</a></dd>
+                    <dd><a href="/#howitworks">How it works</a></dd>
                 </dl>
             </div>
             <div class="col-sm-3">
-                <h5 class="hsp">Contact with us</h5>
+                <h5 class="hsp">Social Media Center</h5>
                 <div class="social_media_icons clearfix">
-                    <a class="social_media_icon" href="#" target="_blank" title="">
+                    <a class="social_media_icon" href="{{ page_settings.facebookURL }}" target="_blank" title="">
 				<span class="icon_blank icon_facebook">
 				<span class="social_text">facebook</span></span>
                     </a>
-                    <a class="social_media_icon" href="#" target="_blank" title="">
+                    <a class="social_media_icon" href="{{ page_settings.twitterURL }}" target="_blank" title="">
 				<span class="icon_blank icon_twitter">
 				<span class="social_text">twitter</span></span>
                     </a>
-                    <a class="social_media_icon" href="" target="_blank" title="">
+                    <a class="social_media_icon" href="{{ page_settings.youtubeURL }}" target="_blank" title="">
 				<span class="icon_blank icon_youtube">
 				<span class="social_text">youtube</span>
 				</span></a>
-                    <a class="social_media_icon" href="#" target="_blank" title=""><span class="icon_blank icon_linkedin">
+                    <a class="social_media_icon" href="{{ page_settings.linkedinURL }}" target="_blank" title="">
+                        <span class="icon_blank icon_linkedin">
 				<span class="social_text">linkedin</span></span>
                     </a>
                 </div>
@@ -192,10 +212,11 @@
 <!--/Footer-->
 
 <!-- scripts -->
-<script src="{% static 'common/js/jquery.js' %}"></script>
+{#<script src="{% static 'common/js/jquery.js' %}"></script>#}
 <script src="{% static 'common/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'common/js/jquery.scrollUp.min.js' %}"></script>
 <script src="{% static 'common/js/price-range.js' %}"></script>
 <script src="{% static 'common/js/main.js' %}"></script>
+<script src="{% static 'common/js/jquery.magnific-popup.min.js' %}"></script>
 </body>
 </html>

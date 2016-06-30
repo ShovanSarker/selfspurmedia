@@ -1,0 +1,85 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Dashboard</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Pending Request
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="table1">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Package Name</th>
+                                    <th>Post Limit</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for requested_package in requested_packages %}
+                                    <tr>
+                                        <td>{{ requested_package.subscriber.name }}</td>
+                                        <td>{{ requested_package.package.name }}</td>
+                                        <td>{{ requested_package.package.limit }}</td>
+                                        <td><a href="/package_request/?accept={{ requested_package.id }}">Accept</a> <a href="/package_request/?reject={{ requested_package.id }}">Reject</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        User List
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="table4">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Number of Posts</th>
+                                    <th>Package</th>
+                                    <th>Maximum Limit</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for subscribed_package in subscribed_packages %}
+                                    <tr>
+                                        <td>{{ subscribed_package.subscriber.name }}</td>
+                                        <td>{{ subscribed_package.numberOfPost }}</td>
+                                        <td>{{ subscribed_package.package.name}}</td>
+                                        <td>{{ subscribed_package.package.limit }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- /.row -->
+    </div>
+    <!-- /#page-wrapper -->
+
+
+{% endblock %}

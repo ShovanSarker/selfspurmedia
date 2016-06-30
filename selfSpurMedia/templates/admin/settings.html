@@ -1,0 +1,383 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">Settings</h3>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-md-12">
+                <p>Complete the forms given below to change the Dashboard settings.</p>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td class="active">Logo</td>
+                            <td><button type="button" class="btn btn-primary btn-xs btn-block" data-toggle="modal" data-target="#logoModal">Fill up</button></td>
+                        </tr>
+                        <tr>
+                            <td class="success">Banner</td>
+                            <td><button type="button" class="btn btn-danger btn-xs btn-block" data-toggle="modal" data-target="#bannerModal">Fill up</button></td>
+                        </tr>
+                        <tr>
+                            <td class="info">Advertise</td>
+                            <td><button type="button" class="btn btn-warning btn-xs btn-block" data-toggle="modal" data-target="#advModal">Fill up</button></td>
+                        </tr>
+                        <tr>
+                            <td class="danger">Scroller</td>
+                            <td><button type="button" class="btn btn-info btn-xs btn-block" data-toggle="modal" data-target="#scrollerModal">Fill up</button></td>
+                        </tr>
+                        <tr>
+                            <td class="warning">Address</td>
+                            <td><button type="button" class="btn btn-primary btn-xs btn-block" data-toggle="modal" data-target="#addModal">Fill up</button></td>
+                        </tr>
+                        <tr>
+                            <td class="active">How it Works</td>
+                            <td><button type="button" class="btn btn-success btn-xs btn-block" data-toggle="modal" data-target="#howModal">Fill up</button></td>
+                        </tr>
+                        <tr>
+                            <td class="danger">Social Network links</td>
+                            <td><button type="button" class="btn btn-info btn-xs btn-block" data-toggle="modal" data-target="#socialModal">Fill up</button></td>
+                        </tr>
+                        <tr>
+                            <td class="info">About Us</td>
+                            <td><button type="button" class="btn btn-success btn-xs btn-block" data-toggle="modal" data-target="#aboutUs">Fill up</button></td>
+                        </tr>
+                        <tr>
+                            <td class="success">Terms & Conditions</td>
+                            <td><button type="button" class="btn btn-primary btn-xs btn-block" data-toggle="modal" data-target="#terms">Fill up</button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+
+
+    {#modal for logo#}
+    <div class="modal fade" id="logoModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Insert A Logo</h4>
+                </div>
+                <form action="/settings/?logo=true" method="post" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Upload a logo</label>
+                            <input name="logo" type="file" id="logoinput" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    {#modal for banner#}
+    <div class="modal fade" id="bannerModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Upload banner Images</h4>
+                </div>
+                <form action="/settings/?banner=true" method="post" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Banner1</label>
+                            <input name="banner1" type="file" id="banner1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Banner2</label>
+                            <input name="banner2" type="file" id="banner2" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Banner3</label>
+                            <input name="banner3" type="file" id="banner3" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    {#modal for advertisment#}
+    <div class="modal fade" id="advModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Upload Advertisement</h4>
+                </div>
+                <form action="/settings/?advertise=true" method="post" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Advertisement1</label>
+                            <input name="adv1" type="file" id="adv1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Advertisement2</label>
+                            <input name="adv2" type="file" id="adv2" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    {#modal for scroller#}
+    <div class="modal fade" id="scrollerModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Scroller</h4>
+                </div>
+                <form action="/settings/?scroller=true" method="post">{% csrf_token %}
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Top Scroller</label>
+                            <select class="form-control" name="headline1" id="hl1" required>
+                                {% for category in all_categories %}
+                                    <option value="{{ category.id }}">{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Middle Scroller</label>
+                            <select class="form-control" name="headline2" id="hl2" required>
+                                {% for category in all_categories %}
+                                    <option value="{{ category.id }}">{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Bottom Scroller</label>
+                            <select class="form-control" name="headline3" id="hl3" required>
+                                {% for category in all_categories %}
+                                    <option value="{{ category.id }}">{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    {#modal for address#}
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Insert Information</h4>
+                </div>
+                <form action="/settings/?address=true" method="post">{% csrf_token %}
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input class="form-control" name="add" type="text" id="add" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Call Center</label>
+                            <input class="form-control" name="cc" type="text" id="cc" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    {#modal for How it works#}
+    <div class="modal fade" id="howModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">How it Works</h4>
+                </div>
+                <form action="/settings/?how=true" method="post" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="modal-body">
+                        <h4>Step 1</h4>
+                        <div class="form-group">
+                            <label>Step Image</label>
+                            <input name="stepimage1" type="file" id="stepimage1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input class="form-control" name="steptitle1" type="text" id="steptitle1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <input class="form-control" name="stepdescription1" type="text" id="stepdescription1" required>
+                        </div>
+                        <hr>
+                        <h4>Step 2</h4>
+                        <div class="form-group">
+                            <label>Step Image</label>
+                            <input name="stepimage2" type="file" id="stepimage2" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input class="form-control" name="steptitle2" type="text" id="steptitle2" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <input class="form-control" name="stepdescription2" type="text" id="stepdescription2" required>
+                        </div>
+                        <hr>
+                        <h4>Step 3</h4>
+                        <div class="form-group">
+                            <label>Step Image</label>
+                            <input name="stepimage3" type="file" id="stepimage3" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input class="form-control" name="steptitle3" type="text" id="steptitle3" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <input class="form-control" name="stepdescription3" type="text" id="stepdescription3" required>
+                        </div>
+                        <hr>
+                        <h4>Step 4</h4>
+                        <div class="form-group">
+                            <label>Step Image</label>
+                            <input name="stepimage4" type="file" id="stepimage4" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input class="form-control" name="steptitle4" type="text" id="steptitle4" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <input class="form-control" name="stepdescription4" type="text" id="stepdescription4" required>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    {#modal for How it works#}
+    <div class="modal fade" id="socialModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Insert Social Media links</h4>
+                </div>
+                <form action="/settings/?social=true" method="post">{% csrf_token %}
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Facebook</label>
+                            <input class="form-control" name="fb" type="text" id="fb" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Twitter</label>
+                            <input class="form-control" name="twitter" type="text" id="twitter" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Youtube</label>
+                            <input class="form-control" name="youtube" type="text" id="youtube" required>
+                        </div>
+                        <div class="form-group">
+                            <label>LinkedIn</label>
+                            <input class="form-control" name="linkedin" type="text" id="linkedin" required>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    {#    modal for about us#}
+    <div class="modal fade" id="aboutUs" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">About Us</h4>
+                </div>
+                <form action="/settings/?about=true" method="post">{% csrf_token %}
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>About Us</label>
+                            <textarea class="form-control" name="aboutus" type="text" id="linkedin"></textarea>..
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    {#    modal for terms and condition#}
+    <div class="modal fade" id="terms" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Terms & Condition</h4>
+                </div>
+                <form action="/settings/?terms=true" method="post">{% csrf_token %}
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Terms & Conditions</label>
+                            <textarea class="form-control" name="terms" type="text" id="linkedin"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+{% endblock %}

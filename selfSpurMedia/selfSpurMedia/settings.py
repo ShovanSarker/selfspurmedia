@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'templateEngine',
     'subscriber',
     'product',
+    'review',
     'package'
 )
 

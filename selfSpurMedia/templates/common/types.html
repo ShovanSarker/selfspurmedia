@@ -1,0 +1,90 @@
+{% extends 'common/base.sho' %}
+<!--{% load static %}-->
+{% block content %}
+
+    <div id="content">
+        <div class="container">
+
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li><a href="{% url 'home'%}">Home</a>
+                    </li>
+                    <li>Types</li>
+                </ul>
+            </div>
+
+            <div class="col-md-3">
+                <!-- *** MENUS AND FILTERS ***
+    _________________________________________________________ -->
+                <div class="panel panel-default sidebar-menu">
+
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Types</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <ul class="nav nav-pills nav-stacked category-menu">
+                            {% for category in all_categories %}
+                                <li>
+                                    <a href="/types/{{ category.id }}">{{ category.name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="box">
+                    <h2 class="gap">{{ this_category.name }}</h2>
+                    <p class="title">Products regarding this type are given below</p>
+                </div>
+
+                <div class="row products">
+                    {% for item in items_in_this_category %}
+                        <div class="col-sm-3">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo">
+                                        <img class="util-valign-inner" alt="Replacement LCD Screen" src="/media/{{ item.image1 }}">
+									<span class="info f-tag-wrap">
+										{% if item.isFeatured %}
+                                            <a target="_self" href="#" class="f-tag" data-spm-anchor-id="a2700.7848340.1998824406.4">
+                                                Featured Listing
+                                                <i></i>
+                                            </a>
+                                        {% endif %}
+									</span>
+                                        <h3><a target="_self" title="" href="/product/{{ item.id }}">{{ item.name }}</a></h3>
+                                        <p>
+                                        <p><big><big>
+                                        <span class="starRating">
+                                            {% if item.totalNumberOfStars == 1 %} <span>☆</span> {% endif %}
+                                            {% if item.totalNumberOfStars == 2 %} <span>☆</span><span>☆</span> {% endif %}
+                                            {% if item.totalNumberOfStars == 3 %} <span>☆</span><span>☆</span><span>☆</span> {% endif %}
+                                            {% if item.totalNumberOfStars == 4 %} <span>☆</span><span>☆</span><span>☆</span><span>☆</span> {% endif %}
+                                            {% if item.totalNumberOfStars == 5 %} <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span> {% endif %}
+                                        </span>
+                                        </big></big>
+                                        </p>
+                                        <div class="detail-item" title="Uploaded By: {{ item.addedBy.name }}">Uploaded By: {{ item.addedBy.name }}</div>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <!-- /.col-md-4 -->
+                </div>
+
+                <!-- /.products -->
+
+            </div>
+            <!-- /.col-md-9 -->
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#content -->
+
+
+{% endblock %}

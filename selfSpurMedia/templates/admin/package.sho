@@ -1,0 +1,104 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Dashboard</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <form class="form-inline" action="{% url 'package' %}" method="post">{% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleInputName2">Name</label>
+                        <input type="text" class="form-control" id="exampleInputName2" name="name" placeholder="Name of the Package" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName3">Remarks</label>
+                        <input type="text" class="form-control" id="exampleInputName3" name="details" placeholder="Details" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName4">Limit</label>
+                        <input type="number" class="form-control" id="exampleInputName4" name="limit" placeholder="Maximum Number of Posts" required="">
+                    </div>
+                    <button type="submit" class="btn btn-success">Add</button>
+                </form>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Active Packages
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="table1">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Limit</th>
+                                    <th>Details</th>
+                                    <th>Deactivate</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for active_package in active_packages %}
+                                    <tr>
+                                        <td>{{ active_package.name }}</td>
+                                        <td>{{ active_package.limit }}</td>
+                                        <td>{{ active_package.remarks }}</td>
+                                        <td><a href="/package/?toggle={{ active_package.id }}">Deactivate</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Inactive Packages
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="table4">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Limit</th>
+                                    <th>Details</th>
+                                    <th>Activate</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for inactive_package in inactive_packages %}
+                                    <tr>
+                                        <td>{{ inactive_package.name }}</td>
+                                        <td>{{ inactive_package.limit }}</td>
+                                        <td>{{ inactive_package.remarks }}</td>
+                                        <td><a href="/package/?toggle={{ inactive_package.id }}">Activate</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- /.row -->
+    </div>
+    <!-- /#page-wrapper -->
+
+{% endblock %}

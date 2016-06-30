@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from templateEngine.views import home, product, products, register, contact, spur, \
-    dashboard, subscriber, logout_now, login, unblock, block, active, package, package_request
+    dashboard, subscriber, logout_now, login, unblock, block, active, package, \
+    package_request, submit_spur, other_request, categories, brands, types, submitreview, settings_dash, posts
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -15,23 +16,31 @@ urlpatterns = patterns('',
                        url(r'^admin/', include(admin.site.urls)),
                        # common URLS start
                        url(r'^$', view=home, name='home'),
-                       url(r'^product/', view=product, name='product'),
+                       url(r'^product/([0-9]+)/', view=product, name='product'),
                        url(r'^products/', view=products, name='products'),
+                       url(r'^categories/([0-9]+)/', view=categories, name='categories'),
+                       url(r'^submitreview/([0-9]+)/', view=submitreview, name='submitreview'),
+                       url(r'^brands/([0-9]+)/', view=brands, name='brands'),
+                       url(r'^types/([0-9]+)/', view=types, name='types'),
                        url(r'^register/', view=register, name='register'),
                        url(r'^logout/', view=logout_now, name='logout'),
                        url(r'^login/', view=login, name='login'),
                        url(r'^spur/', view=spur, name='spur'),
+                       url(r'^submit-spur/', view=submit_spur, name='submit-spur'),
                        url(r'^contact/', view=contact, name='contact'),
                        # common URLS end
 
                        # admin URLS start
                        url(r'^dashboard/', view=dashboard, name='dashboard'),
                        url(r'^subscriber/', view=subscriber, name='subscriber'),
+                       url(r'^posts/', view=posts, name='posts'),
                        url(r'^unblock/([0-9]+)/', view=unblock, name='unblock'),
                        url(r'^block/([0-9]+)/', view=block, name='block'),
                        url(r'^active/([0-9]+)/', view=active, name='active'),
                        url(r'^package/', view=package, name='package'),
                        url(r'^package_request/', view=package_request, name='package_request'),
+                       url(r'^other_request/', view=other_request, name='other_request'),
+                       url(r'^settings/', view=settings_dash, name='settings'),
                        # admin URLS end
 
                        )

@@ -3,6 +3,17 @@ from subscriber.models import Subscriber
 # Create your models here.
 
 
+class Type(models.Model):
+    name = models.CharField(max_length=64)
+    remarks = models.TextField(blank=True, null=True)
+    image = models.FileField("Category Image", upload_to="categoryImages", blank=True, null=True)
+    isActive = models.BooleanField(default=True)
+    dateAdded = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+    def __unicode__(self):
+        return self.name
+
+
 class Category(models.Model):
     name = models.CharField(max_length=64)
     remarks = models.TextField(blank=True, null=True)
@@ -35,12 +46,14 @@ class Product(models.Model):
     image4 = models.FileField("ProductImage4", upload_to="productImages", blank=True, null=True)
     image5 = models.FileField("ProductImage5", upload_to="productImages", blank=True, null=True)
     description = models.TextField(blank=True, null=True)
+    type = models.ForeignKey(Type, related_name='ProductType')
     category = models.ForeignKey(Category, related_name='ProductCategory')
     brand = models.ForeignKey(Brand, related_name='ProductBrand')
     addedBy = models.ForeignKey(Subscriber, related_name='ProductAddedBy')
     totalNumberOfRating = models.IntegerField(default=0)
     totalNumberOfStars = models.IntegerField(default=0)
     isActive = models.BooleanField(default=True)
+    isFeatured = models.BooleanField(default=False)
     isPendingForApproval = models.BooleanField(default=True)
     dateAdded = models.DateTimeField(auto_now=False, auto_now_add=True)
 

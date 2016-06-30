@@ -653,7 +653,7 @@ p.ui-footer-seo-policy a {
     font-size: 20px;
 }
 .m-vs {
-    height: !important;
+    height:0px !important;
 }
 .product-image-wrapper{
     margin-bottom: 0 !important;
@@ -666,7 +666,7 @@ p.ui-footer-seo-policy a {
 }
 .m-global-sites .vmore {
     padding-top: 20px;
-    bottom: 0px!important;
+    bottom: 0 !important;
 }
 .m-global-sites {
     height: auto !important;
@@ -986,6 +986,24 @@ h2.gap{
     position: relative;
 }
 
+h2.gap1{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 5px;
+    position: relative;
+}
+
+h1.gap{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 5px;
+    position: relative;
+}
+
 .product-image-wrapper{
     border:1px solid #F7F7F5;
     overflow: hidden;
@@ -1124,7 +1142,7 @@ a.f-tag {
     transition: height 500ms ease 0s;
     width: 100%;
     display: block;
-    opacity:;
+    opacity:100;
 }
 
 .single-products:hover .product-overlay {
@@ -1136,7 +1154,6 @@ a.f-tag {
 .product-overlay .overlay-content {
     bottom: 0;
     position: absolute;
-    bottom: 0;
     text-align: center;
     width: 100%;
 }
@@ -1342,22 +1359,22 @@ body{
     overflow-x: hidden;
 }
 .guide-pic.guide-inquiry {
-    background-image: url(../images/tb1.png);
+    /*background-image: url(../images/tb1.png);*/
     background-repeat: no-repeat;
     background-size: 100%;
 }
 .guide-pic.guide-order {
-    background-image: url(../images/tb2.png);
+    /*background-image: url(../images/tb2.png);*/
     background-repeat: no-repeat;
     background-size: 100%;
 }
 .guide-pic.guide-payment {
-    background-image: url(../images/tb3.png);
+    /*background-image: url(../images/tb3.png);*/
     background-repeat: no-repeat;
     background-size: 100%;
 }
 .guide-pic.guide-ship {
-    background-image: url(../images/tb4.png);
+    /*background-image: url(../images/tb4.png);*/
     background-repeat: no-repeat;
     background-size: 100%;
 }

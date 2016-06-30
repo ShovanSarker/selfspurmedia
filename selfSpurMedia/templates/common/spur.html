@@ -3,195 +3,115 @@
 
 {% block content %}
 
-<div id="content">
-    <div class="container">
+    <div id="content">
+        <div class="container">
 
-        <div class="col-md-12">
-            <ul class="breadcrumb">
-                <li><a href="{% url 'home'%}">Home</a>
-                </li>
-                <li>Submit a Spur</li>
-            </ul>
-        </div>
-
-        <div class="col-md-12">
-            <div class="box">
-                <form method="post" action="#">
-                    <h1>Submit A spur</h1>
-                    <p class="text-muted">Please Fill up the necessary</p>
-
-                    <div class="col-md-12">
-                        <div class="row">
-
-                            <h3>Select Your Pricing Plan</h3>
-
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="premium" id="premium" value="premium">
-                                    100 Premium - You can submit 100 posts using this plan.
-                                </label>
-                            </div>
-
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="platinum" id="platinum" value="platinum">
-                                    150 Platinum - You can submit 200 posts using this plan. For Featured Place
-                                </label>
-                            </div>
-
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="free" id="free" value="free">
-                                    0 Free - You can submit 5 posts using this plan. This is free
-                                </label>
-                            </div>
-
-                            <hr>
-
-                            <h3>Enter Your Spur Detail</h3>
-
-                            <div class="form-group">
-                                <label class="control-label" for="name">Place Name (Keep it Short and clean)</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter your Place Name">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label" for="add">ADDRESS(Your place's address)</label>
-                                <input type="text" class="form-control" id="add" Placeholder="Enter the address of your place">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label">Location</label>
-                                <select class="form-control">
-                                    <option>Bangladesh</option>
-                                    <option>India</option>
-                                    <option>Pakistan</option>
-                                    <option>Varot</option>
-                                    <option>Himaloy</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label" for="phone">PHONE (Your place's contact phone)</label>
-                                <input type="text" class="form-control" id="phone" placeholder="Enter Your contact number">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label" for="site">WEBSITE (Your place's website url)</label>
-                                <input type="text" class="form-control" id="site" placeholder="Enter Your website's url">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label" for="fb">FACEBOOK (URL to your shop's Facebook page)</label>
-                                <input type="text" class="form-control" id="fb" placeholder="Enter your Places Facebook url">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label" for="google">GOOGLE PLUS (Your place's goole plus url)</label>
-                                <input type="text" class="form-control" id="google" placeholder="Enter your place's Goolge Plus url">
-                            </div>
-
-
-                            <div class="form-group">
-                                <label class="control-label" for="twitter">TWITTER (Your place's twitter url)</label>
-                                <input type="text" class="form-control" id="twitter" placeholder="Enter your place's Twitter url">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label">CATEGORY(Select the most suitable one for your business)</label>
-                                <select class="form-control">
-                                    <option>Product</option>
-                                    <option>Place</option>
-                                    <option>Service</option>
-                                    <option>Event</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label" for="photo">PHOTOS (Up to 5 pictures Select one picture for your featured image Choose Files)</label>
-
-                                <div id="photo1">
-                                    <div id="kv-avatar-errors" class="center-block" style="width:800px;display:none"></div>
-                                    <div class="kv-avatar" style="width:200px">
-                                        <input id="avatar" name="avatar1" type="file" class="file-loading">
-                                    </div>
-                                </div>
-                                <div id="photo2">
-                                    <div id="kv-avatar-errors" class="center-block" style="width:800px;display:none"></div>
-                                    <div class="kv-avatar" style="width:200px">
-                                        <input id="avatar" name="avatar2" type="file" class="file-loading">
-                                    </div>
-                                </div>
-                                <div id="photo3">
-                                    <div id="kv-avatar-errors" class="center-block" style="width:800px;display:none"></div>
-                                    <div class="kv-avatar" style="width:200px">
-                                        <input id="avatar" name="avatar3" type="file" class="file-loading">
-                                    </div>
-                                </div>
-                                <div id="photo4">
-                                    <div id="kv-avatar-errors" class="center-block" style="width:800px;display:none"></div>
-                                    <div class="kv-avatar" style="width:200px">
-                                        <input id="avatar" name="avatar4" type="file" class="file-loading">
-                                    </div>
-                                </div>
-                                <div id="photo5">
-                                    <div id="kv-avatar-errors" class="center-block" style="width:800px;display:none"></div>
-                                    <div class="kv-avatar" style="width:200px">
-                                        <input id="avatar" name="avatar5" type="file" class="file-loading">
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label" for="contact-message">DESCRIPTION (Ideally 3 short paragraphs)</label>
-                                <textarea name="contact-message" id="contact-message" class="form-control" cols="30" rows="12" placeholder="Your Message"></textarea>
-                            </div>
-
-
-                            <hr>
-
-                            <h3>Enter Your Place Detail</h3>
-
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="card" id="card" value="card">
-                                    Credit Card
-                                </label>
-                            </div>
-
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="bank" id="bank" value="bank">
-                                    Bank Account
-                                </label>
-                            </div>
-
-
-                        </div><!-- End .row -->
-                    </div>
-
-
-                    <div class="box-footer">
-                        <div class="pull-right">
-                            <button type="submit" class="btn btn-primary">Submit<i class="fa fa-chevron-right"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                </form>
-
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li><a href="{% url 'home'%}">Home</a>
+                    </li>
+                    <li>Submit A Spur</li>
+                </ul>
             </div>
-            <!-- /.box -->
 
+            <div class="col-md-8 col-md-offset-2">
+                <div class="box">
+                    <form method="post" action="/submit-spur/" enctype="multipart/form-data" >{% csrf_token %}
+                        <h1 class="gap">Submit A Spur</h1>
+                        <p class="text-muted">Please Fill up the necessary</p>
 
+                        <div class="col-md-12">
+                            <div class="row">
+                                <h2 class="gap1">Enter Your Spur Detail</h2>
+                                <hr>
+                                <div class="form-group">
+                                    <label class="control-label" for="name">Product Name</label>
+                                    <input type="text" class="form-control" id="name" name="product" placeholder="Enter your product Name here">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="photo">PHOTOS (Up to 5 pictures Select one picture for your featured image Choose Files)</label>
+
+                                    <div id="photo1">
+                                        <div id="kv-avatar-errors" class="center-block" style="width:800px;display:none"></div>
+                                        <div class="kv-avatar" style="width:200px">
+                                            <input id="avatar" name="avatar1" type="file" class="file-loading">
+                                        </div>
+                                    </div>
+                                    <div id="photo2">
+                                        <div id="kv-avatar-errors" class="center-block" style="width:800px;display:none"></div>
+                                        <div class="kv-avatar" style="width:200px">
+                                            <input id="avatar" name="avatar2" type="file" class="file-loading">
+                                        </div>
+                                    </div>
+                                    <div id="photo3">
+                                        <div id="kv-avatar-errors" class="center-block" style="width:800px;display:none"></div>
+                                        <div class="kv-avatar" style="width:200px">
+                                            <input id="avatar" name="avatar3" type="file" class="file-loading">
+                                        </div>
+                                    </div>
+                                    <div id="photo4">
+                                        <div id="kv-avatar-errors" class="center-block" style="width:800px;display:none"></div>
+                                        <div class="kv-avatar" style="width:200px">
+                                            <input id="avatar" name="avatar4" type="file" class="file-loading">
+                                        </div>
+                                    </div>
+                                    <div id="photo5">
+                                        <div id="kv-avatar-errors" class="center-block" style="width:800px;display:none"></div>
+                                        <div class="kv-avatar" style="width:200px">
+                                            <input id="avatar" name="avatar5" type="file" class="file-loading">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">Type</label>
+                                    <select class="form-control" name="type">
+                                        {% for type in all_type %}
+                                            <option value="{{ type.id }}">{{ type.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">Category</label>
+                                    <select class="form-control" name="category">
+                                        {% for category in all_category %}
+                                            <option value="{{ category.id }}">{{ category.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">Brand</label>
+                                    <select class="form-control" name="brand">
+                                        {% for brand in all_brand %}
+                                            <option value="{{ brand.id }}">{{ brand.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="contact-message">DESCRIPTION</label>
+                                    <textarea name="contact-message" id="contact-message" name="description" class="form-control" cols="30" rows="12" placeholder="Your Message"></textarea>
+                                </div>
+                                <hr>
+                            </div><!-- End .row -->
+                        </div>
+
+                        <div class="box-footer">
+                            <div class="pull-right">
+                                <button type="submit" class="btn btn-primary">Submit<i class="fa fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col-md-9 -->
         </div>
-        <!-- /.col-md-9 -->
-
+        <!-- /.container -->
     </div>
-    <!-- /.container -->
-</div>
-<!-- /#content -->
-
-
+    <!-- /#content -->
 {% endblock %}
