@@ -1,6 +1,9 @@
 from django.conf.urls import patterns, include, url
 from templateEngine.views import home, product, products, register, contact, spur, \
     dashboard, subscriber, logout_now, login, unblock, block, active, package, \
+    package_request, submit_spur, other_request, categories, brands, types, submitreview, settings_dash, \
+    about, terms, changepass, profile
+
     package_request, submit_spur, other_request, categories, brands, types, submitreview,\
     settings_dash, posts, upload_photo_fb
 from django.conf.urls.static import static
@@ -29,6 +32,10 @@ urlpatterns = patterns('',
                        url(r'^spur/', view=spur, name='spur'),
                        url(r'^submit-spur/', view=submit_spur, name='submit-spur'),
                        url(r'^contact/', view=contact, name='contact'),
+                       url(r'^about/', view=about, name='about'),
+                       url(r'^terms/', view=terms, name='terms'),
+                       url(r'^changepass/', view=changepass, name='changepass'),
+                       url(r'^profile/', view=profile, name='profile'),
                        # common URLS end
 
                        # admin URLS start

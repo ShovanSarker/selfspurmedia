@@ -1,10 +1,31 @@
 {% extends 'common/base.sho' %}
-{% load static %}
-{% block title %}
-    <title>{{ page_title }} | selfspurmedia</title>
-{% endblock %}
+<!--{% load static %}-->
 {% block content %}
 
+    <div id="content">
+        <div class="container">
 
+            <div class="col-md-8 col-md-offset-2">
+                <ul class="breadcrumb">
+                    <li><a href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li>About Us</li>
+                </ul>
+
+                <div class="col-md-12">
+                <div class="box" id="contact">
+                    <h1>About Us</h1>
+                    <hr>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p>{{ settings.aboutUS }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
 
 {% endblock %}
