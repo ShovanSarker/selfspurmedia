@@ -615,6 +615,23 @@ def settings_dash(request):
         return redirect('/settings')
     return render(request, 'admin/settings.html', {'all_categories': all_categories})
 
+
+@login_required(login_url='/login/')
+def posts(request):
+    get_data = request.GET
+    all_posts = Product.objects.all()
+    if 'toggle' in get_data:
+        selected_post = Product.objects.get(id=get_data['toggle'])
+        if selected_post.isFeatured:
+            selected_post.isFeatured = False
+        else:
+            selected_post.isFeatured = True
+        selected_post.save()
+        return redirect('/posts')
+    else:
+        return render(request, 'admin/post.html', {'all_posts': all_posts})
+
+
 '''
 End admin section
 '''
