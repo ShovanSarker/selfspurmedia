@@ -395,12 +395,13 @@ def changepass(request):
     print(post_data)
     if 'newPass' in post_data and 'confPass' in post_data:
         if post_data['newPass'] == post_data['confPass']:
-            u = request.user
+
+            u = User.objects.get(username=request.session['user'])
             u.set_password(post_data['newPass'])
             print(post_data['newPass'])
             print(post_data['confPass'])
             u.save()
-
+            return render(request, 'common/change_password.html')
         else:
             print('changing password')
             return render(request, 'common/change_password.html', {'error': True, 'text': 'typed not match'})
