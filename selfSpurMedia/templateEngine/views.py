@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-
+# from TwitterAPI import TwitterAPI
+from twython import Twython
 import urllib2
 import json
 from django.views.decorators.csrf import csrf_exempt
@@ -363,6 +364,7 @@ def contact(request):
     else:
         return render(request, 'common/contact.sho', {'registered': False})
 
+
 def about(request):
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
@@ -694,26 +696,45 @@ def upload_photo_fb(request):
         auth = post_data['auth']
         pid = post_data['pid']
         info_url = 'https://graph.facebook.com/v2.2/' + uid + '/accounts/?access_token=' + auth
-        response = urllib2.urlopen(info_url)
-        info_raw = response.read()
-        info = json.loads(info_raw)
-        # print(info)
-        for page in info['data']:
-            print(page['id'] + '=> 1124711044266860  ' + pid)
-            if page['id'] == '1124711044266860':
-                at = page['access_token']
-                print(at)
-                graph = facebook.GraphAPI(at)
-                pic = Product.objects.get(id=pid)
-                caption = pic.name + '. For details, visit spur.bigblock.tech/product/' + pid + ' .'
-                # picULR = 'inflack.net:8001/media/' + str(pic.image1)
-                graph.put_photo(image=open("/home/webapps/selfspurmedia/selfspurmedia/static/media/" + str(pic.image1)),
-                                album_path=str(1124823817588916),
-                                album=str(1124823817588916), message=caption)
-        # pageid = '1124711044266860'
-        # at = page['access_token']
+        if info_url != 'https://graph.facebook.com/v2.2//accounts/?access_token=':
+            response = urllib2.urlopen(info_url)
+            info_raw = response.read()
+            info = json.loads(info_raw)
+            # print(info)
+            for page in info['data']:
+                print(page['id'] + '=> 1124711044266860  ' + pid)
+                if page['id'] == '1124711044266860':
+                    at = page['access_token']
+                    print(at)
+                    graph = facebook.GraphAPI(at)
+                    pic = Product.objects.get(id=pid)
+                    caption = pic.name + '. For details, visit spur.bigblock.tech/product/' + pid + ' .'
+                    # picULR = 'inflack.net:8001/media/' + str(pic.image1)
+                    graph.put_photo(image=open("/home/webapps/selfspurmedia/selfspurmedia/static/media/" + str(pic.image1)),
+                                    album_path=str(1124823817588916),
+                                    album=str(1124823817588916), message=caption)
+                    # pageid = '1124711044266860'
+                    # at = page['access_token']
     return redirect('/posts')
 
+
+@login_required(login_url='/login/')
+def upload_to_twitter(request):
+    get_data = request.GET
+    pid = get_data['pid']
+    pic = Product.objects.get(id=pid)
+    caption = pic.name + '. For details, visit spur.bigblock.tech/product/' + pid + ' .'
+
+    CONSUMER_KEY = 'i4IbIIviSQmVSZXFeMgCrk6Od'
+    CONSUMER_SECRET = 'jhSy2PPhCYVUQoCTukVKHEGfFiN2lfDfA5UV0AXl1R1U15820i'
+    ACCESS_TOKEN_KEY = '3069595124-ajkPaQVaSbJk4Xwe0QhwlC2tof8ExenFLOfKdns'
+    ACCESS_TOKEN_SECRET = 'quxyBZsEsUm5BWZNaXh4pCJ1TcqaAFLTCpLTAtSYgfZN5'
+    twitter = Twython(CONSUMER_KEY, CONSUMER_SECRET,
+                      ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRET)
+    photo = open("/home/webapps/selfspurmedia/selfspurmedia/static/media/" + str(pic.image1), 'rb')
+    response = twitter.upload_media(media=photo)
+    twitter.update_status(status=caption, media_ids=[response['media_id']])
+    return redirect('/posts')
 
 '''
 End admin section

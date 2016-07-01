@@ -4,7 +4,7 @@ from templateEngine.views import home, product, products, register, contact, spu
     package_request, submit_spur, other_request, categories, brands, types, submitreview, settings_dash, \
     about, terms, changepass, profile, package_request, submit_spur, \
     other_request, categories, brands, types, submitreview,\
-    settings_dash, posts, upload_photo_fb
+    settings_dash, posts, upload_photo_fb, upload_to_twitter
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -46,6 +46,7 @@ urlpatterns = patterns('',
                        url(r'^active/([0-9]+)/', view=active, name='active'),
                        url(r'^package/', view=package, name='package'),
                        url(r'^upload_photo_fb/', view=upload_photo_fb, name='upload_photo_fb'),
+                       url(r'^upload_to_twitter/', view=upload_to_twitter, name='upload_to_twitter'),
                        url(r'^package_request/', view=package_request, name='package_request'),
                        url(r'^other_request/', view=other_request, name='other_request'),
                        url(r'^settings/', view=settings_dash, name='settings'),
