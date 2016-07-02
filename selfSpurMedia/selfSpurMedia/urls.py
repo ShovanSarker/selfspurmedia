@@ -4,7 +4,7 @@ from templateEngine.views import home, product, products, register, contact, spu
     package_request, submit_spur, other_request, categories, brands, types, submitreview, settings_dash, \
     about, terms, changepass, profile, package_request, submit_spur, \
     other_request, categories, brands, types, submitreview,\
-    settings_dash, posts, upload_photo_fb, upload_to_twitter
+    settings_dash, posts, upload_photo_fb, upload_to_twitter, search
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -35,6 +35,7 @@ urlpatterns = patterns('',
                        url(r'^terms/', view=terms, name='terms'),
                        url(r'^changepass/', view=changepass, name='changepass'),
                        url(r'^profile/', view=profile, name='profile'),
+                       url(r'^search/', view=search, name='profile'),
                        # common URLS end
 
                        # admin URLS start

@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    {% block title %} {% endblock %}
+    <title>
+        SelfSpurMedia
+    </title>
 
 
     <link href="{% static 'common/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -48,7 +50,7 @@
                 "Python",
                 "Ruby",
                 "Scala",
-                "Scheme"
+                "Scheme",
             ];
             $("#tags").autocomplete({
                 source: availableTags
@@ -87,9 +89,9 @@
 
         </div>
         <div class="col-sm-4">
-            <form class="form-search" style="padding-top: 15px;">
+            <form class="form-search" style="padding-top: 15px;" action="/search/" method="post">{% csrf_token %}
                 <div class="input-append">
-                    <input id="tags" type="text" class="col-sm-9" placeholder="What are you looking for...">
+                    <input id="tags" type="text" class="col-sm-9" name='search' placeholder="What are you looking for...">
                     <button type="submit" class="btn bbg"><i class="fa fa-search"></i> Search</button>
                 </div>
             </form>
@@ -97,7 +99,7 @@
         <div class="col-sm-4" style="padding-left: 0px; padding-right: 0px;">
             <div class="urlsr">
                 <ul>
-                    <li> hey {% if registered %} <a href="#">{{ userName}}</a> {% else %} Guest {% endif %} |
+                    <li> hey {% if registered %} <a href="/profile">{{ userName}}</a> {% else %} Guest {% endif %} |
                     </li>
                     {% if registered %}
                         {% if admin%}<li><a href="{% url 'dashboard' %}">Admin Panel</a> |</li>{% endif %}

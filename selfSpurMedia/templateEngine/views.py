@@ -60,22 +60,40 @@ def home(request):
     featured_products2 = Product.objects.filter(isFeatured=True)[4:7]
     featured_products3 = Product.objects.filter(isFeatured=True)[8:11]
     top_scroll_category_id = Settings.objects.get(id=1).scroller1
-    top_scroll_category = Category.objects.get(id=top_scroll_category_id)
-    top_scroll_products1 = Product.objects.filter(category=top_scroll_category)[0:3]
-    top_scroll_products2 = Product.objects.filter(category=top_scroll_category)[4:7]
-    top_scroll_products3 = Product.objects.filter(category=top_scroll_category)[8:11]
+    if Category.objects.filter(id=top_scroll_category_id).exists():
+        top_scroll_category = Category.objects.get(id=top_scroll_category_id)
+        top_scroll_products1 = Product.objects.filter(category=top_scroll_category)[0:3]
+        top_scroll_products2 = Product.objects.filter(category=top_scroll_category)[4:7]
+        top_scroll_products3 = Product.objects.filter(category=top_scroll_category)[8:11]
+    else:
+        top_scroll_category = None
+        top_scroll_products1 = None
+        top_scroll_products2 = None
+        top_scroll_products3 = None
 
     mid_scroll_category_id = Settings.objects.get(id=1).scroller2
-    mid_scroll_category = Category.objects.get(id=mid_scroll_category_id)
-    mid_scroll_products1 = Product.objects.filter(category=mid_scroll_category)[0:3]
-    mid_scroll_products2 = Product.objects.filter(category=mid_scroll_category)[4:7]
-    mid_scroll_products3 = Product.objects.filter(category=mid_scroll_category)[8:11]
+    if Category.objects.filter(id=mid_scroll_category_id).exists():
+        mid_scroll_category = Category.objects.get(id=mid_scroll_category_id)
+        mid_scroll_products1 = Product.objects.filter(category=mid_scroll_category)[0:3]
+        mid_scroll_products2 = Product.objects.filter(category=mid_scroll_category)[4:7]
+        mid_scroll_products3 = Product.objects.filter(category=mid_scroll_category)[8:11]
+    else:
+        mid_scroll_category = None
+        mid_scroll_products1 = None
+        mid_scroll_products2 = None
+        mid_scroll_products3 = None
 
     bot_scroll_category_id = Settings.objects.get(id=1).scroller3
-    bot_scroll_category = Category.objects.get(id=bot_scroll_category_id)
-    bot_scroll_products1 = Product.objects.filter(category=bot_scroll_category)[0:3]
-    bot_scroll_products2 = Product.objects.filter(category=bot_scroll_category)[4:7]
-    bot_scroll_products3 = Product.objects.filter(category=bot_scroll_category)[8:11]
+    if Category.objects.filter(id=bot_scroll_category_id).exists():
+        bot_scroll_category = Category.objects.get(id=bot_scroll_category_id)
+        bot_scroll_products1 = Product.objects.filter(category=bot_scroll_category)[0:3]
+        bot_scroll_products2 = Product.objects.filter(category=bot_scroll_category)[4:7]
+        bot_scroll_products3 = Product.objects.filter(category=bot_scroll_category)[8:11]
+    else:
+        bot_scroll_category = None
+        bot_scroll_products1 = None
+        bot_scroll_products2 = None
+        bot_scroll_products3 = None
     page_settings = Settings.objects.get(id=1)
     # print(page_settings.logo)
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
@@ -127,6 +145,7 @@ def home(request):
 
 
 def product(request, pid):
+    page_settings = Settings.objects.get(id=1)
     this_product = Product.objects.get(id=pid)
     review_of_this_product = Review.objects.filter(product=this_product).order_by('-dateAdded')
     suggested_products1 = Product.objects.filter(type=this_product.type, category=this_product.category)[0:3]
@@ -138,6 +157,7 @@ def product(request, pid):
                                                       'productOwner': userObject.isProductOwner,
                                                       'this_product': this_product,
                                                       'userName': userObject.name,
+                                                      'page_settings': page_settings,
                                                       'suggested_products1': suggested_products1,
                                                       'review_of_this_product': review_of_this_product,
                                                       'registered': True})
@@ -147,22 +167,26 @@ def product(request, pid):
                                                       'suggested_products2': suggested_products2,
                                                       'suggested_products3': suggested_products3,
                                                       'review_of_this_product': review_of_this_product,
+                                                      'page_settings': page_settings,
                                                       'this_product': this_product})
 
 
 def products(request):
+    page_settings = Settings.objects.get(id=1)
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
 
         return render(request, 'common/category.html', {'admin': userObject.isAdmin,
                                                         'productOwner': userObject.isProductOwner,
                                                         'userName': userObject.name,
+                                                        'page_settings': page_settings,
                                                         'registered': True})
     else:
-        return render(request, 'common/category.html', {'registered': False})
+        return render(request, 'common/category.html', {'registered': False, 'page_settings': page_settings})
 
 
 def categories(request, iid):
+    page_settings = Settings.objects.get(id=1)
     all_categories = Category.objects.filter(isActive=True)
     this_category = Category.objects.get(id=iid)
     items_in_this_category = Product.objects.filter(category=this_category)
@@ -174,10 +198,12 @@ def categories(request, iid):
                                                         'all_categories': all_categories,
                                                         'this_category': this_category,
                                                         'items_in_this_category': items_in_this_category,
+                                                        'page_settings': page_settings,
                                                         'registered': True})
     else:
         return render(request, 'common/category.html', {'registered': False,
                                                         'this_category': this_category,
+                                                        'page_settings': page_settings,
                                                         'items_in_this_category': items_in_this_category,
                                                         'all_categories': all_categories})
 
@@ -186,6 +212,7 @@ def brands(request, iid):
     all_categories = Brand.objects.filter(isActive=True)
     this_category = Brand.objects.get(id=iid)
     items_in_this_category = Product.objects.filter(brand=this_category)
+    page_settings = Settings.objects.get(id=1)
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
         return render(request, 'common/brand.html', {'admin': userObject.isAdmin,
@@ -193,16 +220,19 @@ def brands(request, iid):
                                                      'userName': userObject.name,
                                                      'all_categories': all_categories,
                                                      'this_category': this_category,
+                                                     'page_settings': page_settings,
                                                      'items_in_this_category': items_in_this_category,
                                                      'registered': True})
     else:
         return render(request, 'common/brand.html', {'registered': False,
                                                      'this_category': this_category,
+                                                     'page_settings': page_settings,
                                                      'items_in_this_category': items_in_this_category,
                                                      'all_categories': all_categories})
 
 
 def types(request, iid):
+    page_settings = Settings.objects.get(id=1)
     all_categories = Type.objects.filter(isActive=True)
     this_category = Type.objects.get(id=iid)
     items_in_this_category = Product.objects.filter(type=this_category)
@@ -211,6 +241,7 @@ def types(request, iid):
         return render(request, 'common/types.html', {'admin': userObject.isAdmin,
                                                      'productOwner': userObject.isProductOwner,
                                                      'userName': userObject.name,
+                                                     'page_settings': page_settings,
                                                      'all_categories': all_categories,
                                                      'this_category': this_category,
                                                      'items_in_this_category': items_in_this_category,
@@ -226,6 +257,7 @@ def types(request, iid):
 def register(request):
     postdata = request.POST
     print(postdata)
+    page_settings = Settings.objects.get(id=1)
     all_packages = Package.objects.filter(isActive=True)
     if 'email_reg' in postdata and not Subscriber.objects.filter(email=postdata['email_reg']).exists():
 
@@ -249,15 +281,16 @@ def register(request):
                                                package=selected_package)
             this_user_package.save()
 
-        user = authenticate(username=postdata['email_reg'], password=postdata['password'])
-        auth_login(request, user)
+        # user = authenticate(username=postdata['email_reg'], password=postdata['password'])
+        # auth_login(request, user)
         request.session['user'] = postdata['email_reg']
         return redirect('/')
     else:
-        return render(request, 'common/register.sho', {'all_packages': all_packages})
+        return render(request, 'common/register.sho', {'all_packages': all_packages, 'page_settings': page_settings})
 
 
 def spur(request):
+    page_settings = Settings.objects.get(id=1)
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
         all_type = Type.objects.all()
@@ -268,6 +301,7 @@ def spur(request):
                                                     'userName': userObject.name,
                                                     'all_type': all_type,
                                                     'all_category': all_category,
+                                                    'page_settings': page_settings,
                                                     'all_brand': all_brand,
                                                     'registered': True})
     else:
@@ -275,6 +309,7 @@ def spur(request):
 
 
 def submitreview(request, pid):
+    page_settings = Settings.objects.get(id=1)
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         post_data = request.POST
         this_product = Product.objects.get(id=pid)
@@ -292,109 +327,152 @@ def submitreview(request, pid):
         this_product.totalNumberOfRating = new_review_count
         this_product.totalNumberOfStars = new_star_rating
         this_product.save()
-
+        userObject.numberOfReviews += 1
+        userObject.save()
         return redirect('/product/' + pid)
     else:
         return redirect('/register')
 
 
 def submit_spur(request):
+    page_settings = Settings.objects.get(id=1)
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
-        post_data = request.POST
-        file_data = request.FILES
-        print(file_data)
-        category_id = post_data['category']
-        brand_id = post_data['brand']
-        type_id = post_data['type']
-        description = post_data['contact-message']
-        product = post_data['product']
-        category_object = Category.objects.get(id=category_id)
-        brand_object = Brand.objects.get(id=brand_id)
-        type_object = Type.objects.get(id=type_id)
-        if 'avatar1' in file_data:
-            avatar1 = file_data['avatar1']
+        number_of_posts_of_this_user = Product.objects.filter(addedBy=userObject).count()
+        if userObject.id > 1:
+            package_of_this_user = SubscribedPackage.objects.get(subscriber=userObject)
+            limit_of_post = package_of_this_user.package.limit
         else:
-            avatar1 = None
+            limit_of_post = number_of_posts_of_this_user + 1
 
-        if 'avatar2' in file_data:
-            avatar2 = file_data['avatar2']
-        else:
-            avatar2 = None
+        if number_of_posts_of_this_user < limit_of_post:
+            post_data = request.POST
+            file_data = request.FILES
+            print(file_data)
+            category_id = post_data['category']
+            brand_id = post_data['brand']
+            type_id = post_data['type']
+            description = post_data['contact-message']
+            product = post_data['product']
+            category_object = Category.objects.get(id=category_id)
+            brand_object = Brand.objects.get(id=brand_id)
+            type_object = Type.objects.get(id=type_id)
+            if 'avatar1' in file_data:
+                avatar1 = file_data['avatar1']
+            else:
+                avatar1 = None
 
-        if 'avatar3' in file_data:
-            avatar3 = file_data['avatar3']
-        else:
-            avatar3 = None
+            if 'avatar2' in file_data:
+                avatar2 = file_data['avatar2']
+            else:
+                avatar2 = None
 
-        if 'avatar4' in file_data:
-            avatar4 = file_data['avatar4']
-        else:
-            avatar4 = None
+            if 'avatar3' in file_data:
+                avatar3 = file_data['avatar3']
+            else:
+                avatar3 = None
 
-        if 'avatar5' in file_data:
-            avatar5 = file_data['avatar5']
-        else:
-            avatar5 = None
-        new_product = Product(name=product,
-                              description=description,
-                              type=type_object,
-                              brand=brand_object,
-                              category=category_object,
-                              addedBy=userObject,
-                              image1=avatar1,
-                              image2=avatar2,
-                              image3=avatar3,
-                              image4=avatar4,
-                              image5=avatar5)
-        new_product.save()
+            if 'avatar4' in file_data:
+                avatar4 = file_data['avatar4']
+            else:
+                avatar4 = None
+
+            if 'avatar5' in file_data:
+                avatar5 = file_data['avatar5']
+            else:
+                avatar5 = None
+            new_product = Product(name=product,
+                                  description=description,
+                                  type=type_object,
+                                  brand=brand_object,
+                                  category=category_object,
+                                  addedBy=userObject,
+                                  image1=avatar1,
+                                  image2=avatar2,
+                                  image3=avatar3,
+                                  image4=avatar4,
+                                  image5=avatar5)
+            new_product.save()
         return redirect('/')
     else:
         return redirect('/register')
 
 
 def contact(request):
+    page_settings = Settings.objects.get(id=1)
+
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
 
         return render(request, 'common/contact.sho', {'admin': userObject.isAdmin,
                                                       'productOwner': userObject.isProductOwner,
                                                       'userName': userObject.name,
+                                                      'page_settings': page_settings,
                                                       'registered': True})
     else:
-        return render(request, 'common/contact.sho', {'registered': False})
+        return render(request, 'common/contact.sho', {'page_settings': page_settings,
+                                                      'registered': False})
 
 
 def about(request):
+    page_settings = Settings.objects.get(id=1)
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
-
-        page_settings = Settings.objects.get(id=1)
-
         return render(request, 'common/about.html', {'admin': userObject.isAdmin,
                                                      'productOwner': userObject.isProductOwner,
                                                      'userName': userObject.name,
                                                      'settings': page_settings,
+                                                     'page_settings': page_settings,
                                                      'registered': True})
     else:
-        return render(request, 'common/about.html', {'registered': False})
+        return render(request, 'common/about.html', {'registered': False, 'page_settings': page_settings})
 
+
+def search(request):
+    page_settings = Settings.objects.get(id=1)
+    post_data = request.POST
+    if 'search' in post_data:
+        keyword = post_data['search']
+        found_products = Product.objects.filter(name__contains=keyword)
+        found_types = Type.objects.filter(name__contains=keyword)
+        found_categories = Category.objects.filter(name__contains=keyword)
+        found_brands = Brand.objects.filter(name__contains=keyword)
+        if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
+            userObject = Subscriber.objects.get(email=request.session['user'])
+            return render(request, 'common/search.html', {'admin': userObject.isAdmin,
+                                                          'productOwner': userObject.isProductOwner,
+                                                          'userName': userObject.name,
+                                                          'settings': page_settings,
+                                                          'page_settings': page_settings,
+                                                          'keyword': keyword,
+                                                          'found_products': found_products,
+                                                          'found_types': found_types,
+                                                          'found_categories': found_categories,
+                                                          'found_brands': found_brands,
+                                                          'registered': True})
+        else:
+            return render(request, 'common/search.html', {'registered': False, 'page_settings': page_settings})
+    else:
+        return redirect('/')
 
 def terms(request):
+    page_settings = Settings.objects.get(id=1)
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
-
-        page_settings = Settings.objects.get(id=1)
         return render(request, 'common/terms.html', {'admin': userObject.isAdmin,
                                                      'productOwner': userObject.isProductOwner,
                                                      'userName': userObject.name,
                                                      'settings': page_settings,
+                                                     'page_settings': page_settings,
                                                      'registered': True})
     else:
-        return render(request, 'common/terms.html', {'registered': False})
+        return render(request, 'common/terms.html', {'registered': False,
+                                                     'page_settings': page_settings})
+
 
 @login_required
 def changepass(request):
+    page_settings = Settings.objects.get(id=1)
     post_data = request.POST
     print(post_data)
     if 'newPass' in post_data and 'confPass' in post_data:
@@ -405,25 +483,32 @@ def changepass(request):
             print(post_data['newPass'])
             print(post_data['confPass'])
             u.save()
-            return render(request, 'common/change_password.html')
+            return render(request, 'common/change_password.html', {'page_settings': page_settings})
         else:
             print('changing password')
-            return render(request, 'common/change_password.html', {'error': True, 'text': 'typed not match'})
+            return render(request, 'common/change_password.html', {'error': True,
+                                                                   'text': 'Password you entered do not match!',
+                                                                   'page_settings': page_settings})
 
     else:
-        return render(request, 'common/change_password.html')
+        return render(request, 'common/change_password.html', {'page_settings': page_settings})
 
 
 def profile(request):
+    page_settings = Settings.objects.get(id=1)
     if 'user' in request.session and Subscriber.objects.filter(email=request.session['user']).exists():
         userObject = Subscriber.objects.get(email=request.session['user'])
-
+        number_of_posts = Product.objects.filter(addedBy=userObject)
         return render(request, 'common/profile.html', {'admin': userObject.isAdmin,
                                                        'productOwner': userObject.isProductOwner,
                                                        'userName': userObject.name,
+                                                       'page_settings': page_settings,
+                                                       'number_of_posts': number_of_posts.count(),
+                                                       'userObject': userObject,
                                                        'registered': True})
     else:
-        return render(request, 'common/profile.html', {'registered': False})
+        return render(request, 'common/profile.html', {'registered': False,
+                                                       'page_settings': page_settings})
 
 
 '''
@@ -710,7 +795,7 @@ def upload_photo_fb(request):
                     pic = Product.objects.get(id=pid)
                     caption = pic.name + '. For details, visit spur.bigblock.tech/product/' + pid + ' .'
                     # picULR = 'inflack.net:8001/media/' + str(pic.image1)
-                    graph.put_photo(image=open("/home/webapps/selfspurmedia/selfspurmedia/static/media/" + str(pic.image1)),
+                    graph.put_photo(image=open("/home/exor/web/static/media/" + str(pic.image1)),
                                     album_path=str(1124823817588916),
                                     album=str(1124823817588916), message=caption)
                     # pageid = '1124711044266860'
@@ -731,7 +816,7 @@ def upload_to_twitter(request):
     ACCESS_TOKEN_SECRET = 'quxyBZsEsUm5BWZNaXh4pCJ1TcqaAFLTCpLTAtSYgfZN5'
     twitter = Twython(CONSUMER_KEY, CONSUMER_SECRET,
                       ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRET)
-    photo = open("/home/webapps/selfspurmedia/selfspurmedia/static/media/" + str(pic.image1), 'rb')
+    photo = open("/home/exor/web/static/media/" + str(pic.image1), 'rb')
     response = twitter.upload_media(media=photo)
     twitter.update_status(status=caption, media_ids=[response['media_id']])
     return redirect('/posts')

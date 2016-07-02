@@ -19,7 +19,44 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-12">
-                                This is Profile page
+                                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td class="active">Name</td>
+                            <td class="active">{{ userObject.name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="success">Email Address</td>
+                            <td class="success">{{ userObject.email }}</td>
+                        </tr>
+                        <tr>
+                            <td class="active">Number of Posts</td>
+                            <td class="active">{{ number_of_posts }}</td>
+                        </tr>
+                        <tr>
+                            <td class="success">Number of reviews</td>
+                            <td class="success">{{ userObject.numberOfReviews }}</td>
+                        </tr>
+                        <tr>
+                            <td class="active">Joined</td>
+                            <td class="active">{{ userObject.dateAdded }}</td>
+                        </tr>
+                        <tr>
+                            <td class="success">Secret Question</td>
+                            <td class="success">{{ userObject.secretQuestion }}</td>
+                        </tr>
+                        <tr>
+                            <td class="active">Answer of Secret Question</td>
+                            <td class="active">{{ userObject.secretAnswer }}</td>
+                        </tr>
+                        <tr>
+                            <td class="success">Password</td>
+                            <td class="success"><a href="/changepass"><button class="btn btn-info btn-xs">Change Password</button> </a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
                             </div>
                         </div>
                     </div>
